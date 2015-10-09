@@ -9,8 +9,8 @@ To give or sell things you don’t need on the web. Get things you need for free
 
 | ![autekroy](/res/img/autekwing.jpg) | ![]() | ![]() | ![]() |
 | :------------: | :------------: | :------------: | :------------: |
-| Yao-Jen Chang | Pengcheng Pan | Beiqi Guan | Tai-Yi Wu |
-| [@autekroy](https://github.com/autekroy) | [@icue](https://github.com/icue) | [@NickGod](https://github.com/NickGod) | [@demundo](https://github.com/demundo) |
+| Yao-Jen Chang | Tai-Yi Wu | Pengcheng Pan | Beiqi Guan | 
+| [@autekroy](https://github.com/autekroy) | [@demundo](https://github.com/demundo) | [@icue](https://github.com/icue) | [@NickGod](https://github.com/NickGod) | 
 
 
 ## Pivotal Tracker Link
