@@ -7,10 +7,10 @@ To give or sell things you don’t need on the web. Get things you need for free
 
 ## Members
 
-| ![autekroy]() | ![]() | ![]() | ![]() |
+| ![autekroy](/res/img/autekwing.jpg) | ![]() | ![]() | ![]() |
 | :------------: | :------------: | :------------: | :------------: |
-| Yao-Jen Chang | |  |  |
-| [@autekroy](https://github.com/autekroy) | |  | |
+| Yao-Jen Chang | Pengcheng Pan | Beiqi Guan | Tai-Yi Wu |
+| [@autekroy](https://github.com/autekroy) | [@icue](https://github.com/icue) | [@NickGod](https://github.com/NickGod) | [@demundo](https://github.com/demundo) |
 
 
 ## Pivotal Tracker Link
