@@ -1,6 +1,6 @@
 # Pick-and-Choose
 
-## ![Project Online Proposal](https://docs.google.com/document/d/13t5k4U9_sEiH1fDI6qLfmrCFykl8EG3NZqh1yU9t8vc/edit)
+## ![Project Online Proposal](https://docs.google.com/document/d/13t5k4U9_sEiH1fDI6qLfmrCFykl8EG3NZqh1yU9t8vc)
 
 ## Project Description
 To give or sell things you don’t need on the web. Get things you need for free or in cheap prices.  Easy to search, filter, discover stuffs around you based on geolocation.
