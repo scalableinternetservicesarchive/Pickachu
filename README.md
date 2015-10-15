@@ -7,7 +7,7 @@ To give or sell things you don’t need on the web. Get things you need for free
 
 ## Members
 
-| ![autekroy](/res/img/autekwing.jpg) | ![demundo](/res/img/twu.jpg) | ![icue]/res/img/ppc.jpg() | ![NickGod](/res/img/nicho.jpg) |
+| ![autekroy](/res/img/autekwing.jpg) | ![demundo](/res/img/twu.jpg) | ![icue]/(res/img/ppc.jpg) | ![NickGod](/res/img/nicho.jpg) |
 | :------------: | :------------: | :------------: | :------------: |
 | Yao-Jen Chang | Tai-Yi Wu | Pengcheng Pan | Beiqi Guan | 
 | [@autekroy](https://github.com/autekroy) | [@demundo](https://github.com/demundo) | [@icue](https://github.com/icue) | [@NickGod](https://github.com/NickGod) | 
