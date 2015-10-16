@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @pickup.uid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pickup.name %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @pickup.long %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @pickup.lat %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @pickup.type %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @pickup.image_url %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @pickup.price %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @pickup.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @pickup.end_time %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pickup.description %>
+</p>
+
+<%= link_to 'Edit', edit_pickup_path(@pickup) %> |
+<%= link_to 'Back', pickups_path %>
