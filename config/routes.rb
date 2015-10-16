@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
 
+  get 'user/new'
+
   resources :pickups
-  get 'home/signup'
+  resources :user
 
-  get 'home/login'
+  get 'login' => "home#login"
 
-  get 'home/about'
+  get 'about' => "home#about"
 
-  get 'home/pickachu'
+  get 'pickachu' => "home#pickachu"
 
-  get 'home/index'
+  get 'index' => "home#index"
+
+  get 'app' =>"pickups#index"
 
   get 'Login' =>'logini#login'
+
+  get 'signup' => 'user#create'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
