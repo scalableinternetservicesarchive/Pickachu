@@ -5,8 +5,8 @@ development:
   database: pickachu
   pool: 5
   username: root
-  password: root
-  socket: /opt/local/var/run/mysql5/mysqld.sock
+  password: 
+  socket: 
 
 test:
   adapter: mysql
@@ -15,8 +15,8 @@ test:
   database: pickachu
   pool: 5
   username: root
-  password: root
-  socket: /opt/local/var/run/mysql5/mysqld.sock
+  password: 
+  socket: 
   
 production:
   adapter: mysql
@@ -25,5 +25,5 @@ production:
   database: pickachu
   pool: 5
   username: root
-  password: root
-  socket: /opt/local/var/run/mysql5/mysqld.sock
+  password: 
+  socket: 
