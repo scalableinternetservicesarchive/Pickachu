@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'user/new'
-
   resources :pickups
-  resources :user
+  resources :users
 
   get 'login' => "home#login"
 
@@ -17,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'Login' =>'logini#login'
 
-  get 'signup' => 'user#create'
+  get 'signup' => 'users#new'
 
 
 
