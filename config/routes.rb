@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :models
+
+
   resources :pickups
   resources :users
 
@@ -11,7 +14,7 @@ Rails.application.routes.draw do
 
   get 'index' => "home#index"
 
-  get 'app' =>"pickups#index"
+  get 'pickups' =>"pickups#index"
 
   get 'Login' =>'logini#login'
 
