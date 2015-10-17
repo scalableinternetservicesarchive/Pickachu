@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :models
-  get 'user/new'
+
 
   resources :pickups
-  resources :user
+  resources :users
 
   get 'login' => "home#login"
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'Login' =>'logini#login'
 
-  get 'signup' => 'user#create'
+  get 'signup' => 'users#new'
 
 
 

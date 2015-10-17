@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016092955) do
+ActiveRecord::Schema.define(version: 20151016235439) do
 
   create_table "pickups", force: :cascade do |t|
     t.string   "uid"
