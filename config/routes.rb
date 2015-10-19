@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 
 
   resources :pickups
-  resources :users
-
+  resources :users do
+    collection do
+      get 'comment'
+    end
+  end
+  
   get 'login' => "home#login"
 
   get 'about' => "home#about"
@@ -19,6 +23,11 @@ Rails.application.routes.draw do
   get 'Login' =>'logini#login'
 
   get 'signup' => 'users#new'
+
+  #Route for comment action
+  get 'comment' => 'users#comment'
+  get 'users/comment' => "users#comment", as: 'users_search'
+
 
 
 
