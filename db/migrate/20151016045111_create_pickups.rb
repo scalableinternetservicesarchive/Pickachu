@@ -5,7 +5,7 @@ class CreatePickups < ActiveRecord::Migration
       t.string :name
       t.decimal :long
       t.decimal :lat
-      t.integer :type
+      t.integer :obj_type
       t.string :image_url
       t.decimal :price
       t.date :start_time

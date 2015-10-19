@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20151016235439) do
     t.string   "name",        limit: 255
     t.decimal  "long",                      precision: 10
     t.decimal  "lat",                       precision: 10
-    t.integer  "type",        limit: 4
+    t.integer  "obj_type",    limit: 4
     t.string   "image_url",   limit: 255
     t.decimal  "price",                     precision: 10
     t.date     "start_time"
