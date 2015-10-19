@@ -8,6 +8,25 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def comment
+    if params[:search]
+      @user = User.find_by_name(params[:search])
+    end
+    if params[:name]
+      @user = User.find_by_name(params[:name])
+      oldNum = @user.number_of_trades
+      if @user.reputation!=nil
+        newSum = oldNum * @user.reputation + params[:rep].to_f
+      else
+        newSum = params[:rep].to_f
+      end
+      @user.update(number_of_trades: (oldNum+1))
+      @user.update(reputation: newSum/(oldNum+1))
+    end
+  end
+
+
+
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save

@@ -21,6 +21,10 @@
   * `rails console`
   * `ActiveRecord::Migration.drop_table(:users)`
 
+### 5. undo to previous push (can't go back!)
+  * `git reset --hard <commit_id>`
+  * `git push origin HEAD --force`
+
 ### Reference
  1. [Gem guides](http://guides.rubygems.org/command-reference/)
  2. [Rails guides](http://guides.rubyonrails.org/command_line.html)
