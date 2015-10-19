@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20151019002344) do
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.string   "password_digest",  limit: 255
-    t.integer  "number_of_trades", limit: 4,   default: 0
     t.float    "reputation",       limit: 53,  default: 0.0
+    t.integer  "number_of_trades", limit: 4,   default: 0
   end
 
 end

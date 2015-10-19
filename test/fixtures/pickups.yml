@@ -5,7 +5,7 @@ one:
   name: MyString
   long: 9.99
   lat: 9.99
-  type: 1
+  obj_type: 1
   image_url: MyString
   price: 9.99
   start_time: 2015-10-15
@@ -17,7 +17,7 @@ two:
   name: MyString
   long: 9.99
   lat: 9.99
-  type: 1
+  obj_type: 1
   image_url: MyString
   price: 9.99
   start_time: 2015-10-15
