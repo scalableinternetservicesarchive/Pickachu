@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 
 gem 'devise'
 # encryption package
+
+gem 'underscore-rails'
+# underscore js
+gem 'gmaps4rails'
+# Google-Maps-for-Rails
 gem 'bcrypt',	'3.1.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

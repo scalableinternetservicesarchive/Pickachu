@@ -25,9 +25,10 @@
   * `git reset --hard <commit_id>`
   * `git push origin HEAD --force`
 
-### 6. unit test
+### 6. unit test:
   * `cd test`
   * `ruby -I. models/pickup_test.rb `: create one pickup and delete it
+  * from http://stackoverflow.com/questions/3950768/rails-tests-cant-find-test-helper
 
 ### Reference
  1. [Gem guides](http://guides.rubygems.org/command-reference/)
