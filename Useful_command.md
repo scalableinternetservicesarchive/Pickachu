@@ -25,6 +25,10 @@
   * `git reset --hard <commit_id>`
   * `git push origin HEAD --force`
 
+### 6. unit test
+  * `cd test`
+  * `ruby -I. models/pickup_test.rb `: create one pickup and delete it
+
 ### Reference
  1. [Gem guides](http://guides.rubygems.org/command-reference/)
  2. [Rails guides](http://guides.rubyonrails.org/command_line.html)

@@ -1,25 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  uid: MyString
-  name: MyString
-  long: 9.99
-  lat: 9.99
+sell_textbook:
+  uid: 'jifso321423'
+  name: 'Sell intro to economics in $30!'
+  long: 19.32
+  lat: 29.389
   obj_type: 1
-  image_url: MyString
-  price: 9.99
+  image_url: 'http://www.econometricsbooks.com/images/25763071.jpg'
+  price: 29.99
   start_time: 2015-10-15
-  end_time: 2015-10-15
-  description: MyText
+  end_time: 2015-11-15
+  description: 'classic book! WORTH to read!'
 
-two:
-  uid: MyString
-  name: MyString
-  long: 9.99
-  lat: 9.99
+free_notebook:
+  uid: '4fsdjfijofas'
+  name: 'Free old note book'
+  long: 39.9944
+  lat: 319.003
   obj_type: 1
-  image_url: MyString
-  price: 9.99
+  image_url: 'https://shaquanagardner.files.wordpress.com/2014/04/open-blank-old-notebook.jpg'
+  price: 0.00
   start_time: 2015-10-15
   end_time: 2015-10-15
-  description: MyText
+  description: 'It is free!'
