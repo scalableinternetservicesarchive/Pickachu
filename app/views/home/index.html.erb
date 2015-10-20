@@ -133,14 +133,17 @@
           <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyBqGHXqWZ2hO2atUBSMRZluvbz0UHCMCv4" %>
           <!-- <%= javascript_include_tag '/javascripts/map' %> -->
           <%= javascript_tag do %>
-          var map;
-<!-- function init() { -->
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
+          function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(34.067, -118.445),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      }
   <!-- } -->
-            <!-- google.maps.event.addDomListener(window, 'load', init); -->
+            google.maps.event.addDomListener(window, 'load', initialize);
           <% end %>
           <div id="map-canvas"></div>
       <!-- </div> -->
