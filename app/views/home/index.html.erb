@@ -1,5 +1,5 @@
           
-              <div class="navbar-wrapper">
+    <div class="navbar-wrapper">
       <div class="container">
 
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -51,6 +51,7 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -81,6 +82,13 @@
               <p>Sell in cheap price or for free! We have more than we need.</p>
               <p><a class="btn btn-lg btn-primary" href="/signup" role="button">Sign up today</a></p>
             </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="container">
+            <!-- <div class="carousel-caption"> -->
+
+            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -123,33 +131,7 @@
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
-      <!-- Google Maps for Rails -->
-      
-  <!--     <div style='width: 800px;'>
-        <div id="Google-maps" style='width: 800px; height: 400px;'></div>
-      
-      </div> -->
-      <!-- <div id="map-container"> -->
 
-        <div id="map-canvas"></div>
-          <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBqGHXqWZ2hO2atUBSMRZluvbz0UHCMCv4' %>
-          
-          <%= javascript_tag do %>
-var map;
-          function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(34.067, -118.445),
-          zoom: 15,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-            google.maps.event.addDomListener(window, 'load', initialize);
-          <% end %>
-
-      <!-- </div> -->
-      <!-- end of div for Google map -->
 
       <!-- START THE FEATURETTES -->
 
@@ -193,11 +175,17 @@ var map;
 
       <!-- /END THE FEATURETTES -->
 
-
-      <!-- FOOTER -->
+    </div><!-- /.container -->
+      <!-- Google Maps -->
+        <div id="map_canvas"></div>
+          <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBqGHXqWZ2hO2atUBSMRZluvbz0UHCMCv4' %>
+          <%= javascript_include_tag 'google_map' %>
+          <%= javascript_tag do %>
+           google.maps.event.addDomListener(window, 'load', initialize);
+          <% end %>
+      <!-- end of div for Google map -->    
+<!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2015 Pickachu Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
+      </footer>      
