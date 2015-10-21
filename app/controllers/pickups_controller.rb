@@ -1,4 +1,5 @@
 class PickupsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
   # GET /pickups

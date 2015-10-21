@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   devise_for :models
 
 
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
       get 'comment'
     end
   end
-  
+
   get 'login' => "home#login"
 
   get 'about' => "home#about"

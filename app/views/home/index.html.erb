@@ -1,5 +1,4 @@
-          
-    <div class="navbar-wrapper">
+<class="navbar-wrapper">
       <div class="container">
 
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -19,7 +18,15 @@
                 <li><a href="#pickandchoose">Pick & Choose</a></li>
                 <li><a href="/comment">Make Comments</a></li>
                 <li><a href="/pickups">Create Pickup</a></li>
-                <li><a href="/signup">Signup</a></li>
+                <% if user_signed_in? %>
+                <li>
+                  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to('Login', new_user_session_path)  %>
+                </li>
+                <% end %>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
@@ -183,9 +190,9 @@
           <%= javascript_tag do %>
            google.maps.event.addDomListener(window, 'load', initialize);
           <% end %>
-      <!-- end of div for Google map -->    
+      <!-- end of div for Google map -->
 <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2015 Pickachu Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>      
+      </footer>
