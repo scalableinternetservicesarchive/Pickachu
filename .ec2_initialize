@@ -1,1 +1,1 @@
-sudo apt-get install patch
+sudo yum install -y patch
