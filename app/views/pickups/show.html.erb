@@ -12,12 +12,12 @@
 
 <p>
   <strong>Long:</strong>
-  <%= number_to_currency(@pickup.long) %>
+  <%= @pickup.long.round(2) %>
 </p>
 
 <p>
   <strong>Lat:</strong>
-  <%= number_to_currency(@pickup.lat) %>
+  <%= @pickup.lat.round(2) %>
 </p>
 
 <p>

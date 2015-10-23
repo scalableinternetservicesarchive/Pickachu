@@ -25,8 +25,8 @@
       <tr>
         <td><%= pickup.uid %></td>
         <td><%= pickup.name %></td>
-        <td><%= pickup.long %></td>
-        <td><%= pickup.lat %></td>
+        <td><%= pickup.long.round(2) %></td>
+        <td><%= pickup.lat.round(2) %></td>
         <td><%= pickup.obj_type %></td>
         <td><%= pickup.image_url %></td>
         <td><%= pickup.price %></td>
