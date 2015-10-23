@@ -34,16 +34,16 @@ ActiveRecord::Schema.define(version: 20151021045225) do
   create_table "pickups", force: :cascade do |t|
     t.string   "uid",         limit: 255
     t.string   "name",        limit: 255
-    t.decimal  "long",                      precision: 10
-    t.decimal  "lat",                       precision: 10
+    t.float    "long",        limit: 24
+    t.float    "lat",         limit: 24
     t.integer  "obj_type",    limit: 4
     t.string   "image_url",   limit: 255
-    t.decimal  "price",                     precision: 10
+    t.float    "price",       limit: 24
     t.date     "start_time"
     t.date     "end_time"
     t.text     "description", limit: 65535
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|

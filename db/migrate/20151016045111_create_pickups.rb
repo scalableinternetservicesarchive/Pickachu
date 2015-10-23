@@ -3,11 +3,11 @@ class CreatePickups < ActiveRecord::Migration
     create_table :pickups do |t|
       t.string :uid
       t.string :name
-      t.decimal :long
-      t.decimal :lat
+      t.float :long
+      t.float :lat
       t.integer :obj_type
       t.string :image_url
-      t.decimal :price
+      t.float :price
       t.date :start_time
       t.date :end_time
       t.text :description
