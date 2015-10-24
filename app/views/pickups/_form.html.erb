@@ -1,4 +1,6 @@
-<%= form_for(@pickup) do |f| %>
+<div class="container">
+<%= bootstrap_form_for(@pickup) do |f| %>
+
   <% if @pickup.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pickup.errors.count, "error") %> prohibited this pickup from being saved:</h2>
@@ -12,46 +14,37 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :uid %><br>
     <%= f.text_field :uid %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :long %><br>
     <%= f.text_field :long %>
   </div>
   <div class="field">
-    <%= f.label :lat %><br>
     <%= f.text_field :lat %>
   </div>
   <div class="field">
-    <%= f.label :obj_type %><br>
     <%= f.number_field :obj_type %>
   </div>
   <div class="field">
-    <%= f.label :image_url %><br>
     <%= f.text_field :image_url %>
   </div>
   <div class="field">
-    <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
     <%= f.date_select :start_time %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
     <%= f.date_select :end_time %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
