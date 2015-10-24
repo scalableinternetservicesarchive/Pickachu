@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'devise'
 # encryption package
 
+gem 'bootstrap_form'
+# bootstrap_form
+
 gem 'underscore-rails'
 # underscore js
 gem 'gmaps4rails'
