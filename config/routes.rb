@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :nearbies
   devise_for :users
   devise_for :models
 
