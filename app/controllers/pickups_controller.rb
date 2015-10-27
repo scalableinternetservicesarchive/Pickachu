@@ -6,6 +6,8 @@ class PickupsController < ApplicationController
   # GET /pickups.json
   def index
     @pickups = Pickup.all
+    @pickup = Pickup.new
+
   end
 
   # GET /pickups/1
@@ -29,8 +31,8 @@ class PickupsController < ApplicationController
 
     respond_to do |format|
       if @pickup.save
-        format.html { redirect_to @pickup, notice: 'Pickup was successfully created.' }
-        format.json { render :show, status: :created, location: @pickup }
+        format.html { redirect_to pickups_url, notice: 'Pickup was successfully created.' }
+        format.json { render :index, status: :created, location: @pickup }
       else
         format.html { render :new }
         format.json { render json: @pickup.errors, status: :unprocessable_entity }
