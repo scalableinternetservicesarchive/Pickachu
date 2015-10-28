@@ -1,8 +1,12 @@
 require 'test_helper'
 
 class NearbiesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  fixtures :users
+  fixtures :nearbies
   setup do
     @nearby = nearbies(:one)
+    sign_in users(:user1)
   end
 
   test "should get index" do
@@ -46,4 +50,5 @@ class NearbiesControllerTest < ActionController::TestCase
 
     assert_redirected_to nearbies_path
   end
+
 end
