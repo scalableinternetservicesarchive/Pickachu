@@ -3,3 +3,5 @@ rvm:
   - 2.1.3
 before_script:
   - mysql -e 'create database pickachu;'
+  - mysql -e 'create database pickachu_test;'
+  - mysql -e 'create database pickachu_development;'
