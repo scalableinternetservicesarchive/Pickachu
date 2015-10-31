@@ -13,9 +13,12 @@ class UsersController < ApplicationController
     end
     if params[:search]
       @user = User.find_by_name(params[:search])
+      if @user.present?
+        @pickups = Pickup.where("uid=?",@user.id)
+      end
     end
-    if params[:name]
-      @user = User.find_by_name(params[:name])
+    if params[:username]
+      @user = User.find_by_name(params[:username])
       oldNum = @user.number_of_trades
       if @user.reputation!=nil
         newSum = oldNum * @user.reputation + params[:rep].to_f
@@ -24,6 +27,9 @@ class UsersController < ApplicationController
       end
       @user.update(number_of_trades: (oldNum+1))
       @user.update(reputation: newSum/(oldNum+1))
+      @singlePickup= Pickup.find_by_id(params[:pickupid])
+      @singlePickup.update(rate: params[:rep].to_f)
+      # @singlePickup.update(comment: params[comment])
     end
   end
 
