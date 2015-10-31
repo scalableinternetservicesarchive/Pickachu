@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nearby goods</h1>
+
+  <div id="map_canvas"></div>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBqGHXqWZ2hO2atUBSMRZluvbz0UHCMCv4' %>
+  <%= javascript_include_tag 'google_map' %>
+  <%= javascript_tag do %>
+  google.maps.event.addDomListener(window, 'load', initialize);
+  <% end %>
+    
+
+<br>
+
+<%= link_to 'New Nearby', new_nearby_path %>
