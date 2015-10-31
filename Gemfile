@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+
+gem 'gmaps4rails'
+# google map for rails
+
 gem 'devise'
 # encryption package
 
