@@ -4,7 +4,14 @@ class NearbiesController < ApplicationController
   # GET /nearbies
   # GET /nearbies.json
   def index
-    @nearbies = Nearby.all
+    @pickups = Pickup.all
+    @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
+      marker.lat pickup.lat
+      marker.lng pickup.long
+    end
+    @pickups.each do |pickup|
+      puts(pickup)
+    end
   end
 
   # GET /nearbies/1
@@ -64,7 +71,7 @@ class NearbiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_nearby
-      @nearby = Nearby.find(params[:id])
+      @pickup = Pickup.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
