@@ -13,7 +13,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :uid %>
+    <h1><%= current_user.name %></h1>
+    <%= f.hidden_field :uid, required: true, class: 'form-control', value:current_user.id  %>
   </div>
   <div class="field">
     <%= f.text_field :name %>
@@ -24,6 +25,7 @@
   <div class="field">
     <%= f.text_field :lat %>
   </div>
+
   <div class="field">
     <%= f.number_field :obj_type %>
   </div>
