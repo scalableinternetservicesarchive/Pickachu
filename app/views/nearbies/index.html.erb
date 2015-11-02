@@ -25,6 +25,26 @@ handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
   handler.fitMapToBounds();
 });
 
+ var marker = null;
+ google.maps.event.addListener(
+  handler.getMap(), 'click', function(object){ 
+    // alert('clicked');
+    marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});
+    handler.addMarkers(marker);
+    }
+  );
+
+// function gmaps4rails_callback() {
+//    var marker = null;
+//    google.maps.event.addListener(
+//     Gmaps.map, 'click', function(object){ 
+//       alert('Clicked');
+//       marker = new google.maps.Marker({position: object.latLng, map: Gmaps4Rails.map})
+//       handler.addMarkers(marker);
+//       }
+//     );
+// }
+
 
     
 </script>
