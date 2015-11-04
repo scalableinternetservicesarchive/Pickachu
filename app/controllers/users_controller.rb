@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       @user.update(reputation: newSum/(oldNum+1))
       @singlePickup= Pickup.find_by_id(params[:pickupid])
       @singlePickup.update(rate: params[:rep].to_f)
-      # @singlePickup.update(comment: params[comment])
+      @singlePickup.update(comment: params[:comment])
     end
   end
 

@@ -20,19 +20,34 @@
 
 var handler = Gmaps.build('Google');
 handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
-  var markers = handler.addMarkers([
-    { lat: 34, lng: -118},
-    { lat: 34, lng: -119},
-    { lat: 33, lng: -118},
-    { lat: 33, lng: -119},
-    { lat: 35, lng: -113}
-  ]);
+  var markers = handler.addMarkers(<%=raw @hash.to_json%>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
 });
+
+ var marker = null;
+ google.maps.event.addListener(
+  handler.getMap(), 'click', function(object){ 
+    // alert('clicked');
+    marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});
+    handler.addMarkers(marker);
+    }
+  );
+
+// function gmaps4rails_callback() {
+//    var marker = null;
+//    google.maps.event.addListener(
+//     Gmaps.map, 'click', function(object){ 
+//       alert('Clicked');
+//       marker = new google.maps.Marker({position: object.latLng, map: Gmaps4Rails.map})
+//       handler.addMarkers(marker);
+//       }
+//     );
+// }
 
 
     
 </script>
 
-<%= link_to 'New Nearby', new_nearby_path %>
+<!-- <%= link_to 'New Nearby', new_nearby_path %>
+ -->
