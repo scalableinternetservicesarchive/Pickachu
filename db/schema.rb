@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027225041) do
+ActiveRecord::Schema.define(version: 20151029231858) do
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -47,8 +47,10 @@ ActiveRecord::Schema.define(version: 20151027225041) do
     t.date     "start_time"
     t.date     "end_time"
     t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.float    "rate",        limit: 53,    default: 0.0
+    t.text     "comment",     limit: 65535
   end
 
   create_table "users", force: :cascade do |t|

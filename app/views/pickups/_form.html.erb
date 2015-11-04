@@ -26,6 +26,18 @@
     <%= f.text_field :lat %>
   </div>
 
+  <div id="multi_markers" style='height: 120px;'></div>
+  <br>
+  <script>
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
+    var markers = handler.addMarkers([
+        { Lat: Gmaps.map.userLocation.lat(), Lng: Gmaps.map.userLocation.lng() }
+   ]);
+   handler.bounds.extendWith(markers);
+   handler.fitMapToBounds();
+  });
+ </script>
   <div class="field">
     <%= f.number_field :obj_type %>
   </div>
