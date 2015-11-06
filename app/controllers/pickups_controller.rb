@@ -2,12 +2,23 @@ class PickupsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
-  # GET /pickups
-  # GET /pickups.json
-  def index
-    @pickups = Pickup.all
-    @pickup = Pickup.new
 
+  def index
+      @pickups = Pickup.all
+      @pickup = Pickup.new
+# new added
+      if params[:search_des]
+        @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+      else
+        @pickups = Pickup.order("created_at DESC")
+      end
+
+      if params[:search_area].kind_of? Float
+        @pickups = Pickup.search_area(params[:search_area]).order("created_at DESC")
+      else
+        @pickups = Pickup.order("created_at DESC")
+      end
+# end of new
   end
 
   # GET /pickups/1

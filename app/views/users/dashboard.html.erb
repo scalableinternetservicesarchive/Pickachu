@@ -29,8 +29,9 @@
   </thead>
 
   <tbody>
-    <% Array(@pickups).each do |pickup| %>
-        <% if pickup.uid = current_user.id %>
+		<% @pickups = Pickup.all %>
+    <% @pickups.each do |pickup| %>
+        <% if pickup.uid%>
           <tr>
             <td><%= pickup.id %></td>
             <td><%= pickup.name %></td>
