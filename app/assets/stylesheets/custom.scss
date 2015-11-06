@@ -235,5 +235,19 @@ hr.small {
 /* Footer */
 
 footer {
-    padding: 100px 0;
+    padding: 10px 0;
+}
+
+.full-screen-map {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.nearby-map {
+    position:relative;
+    height: 100%;
+    width: 100%;
+    font-size: 36px;
+    font-weight: 500;
 }
