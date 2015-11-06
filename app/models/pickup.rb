@@ -11,7 +11,7 @@ class Pickup < ActiveRecord::Base
   end
   def self.search_area(query)
 
-SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) 
+SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) ) 
 
 # 3959 是以 mile 為單位的常數，若要以 km 計，請替換成 6371
 # (37, -122) 是你傳入的位置
@@ -24,6 +24,6 @@ SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) )
 # LIMIT 0 , 20;  	
     
     # where(:title, query) -> This would return an exact match of the query
-    where("description like ?", "%#{query}%") 
+    where("description like ?", "%#{query}%") )
   end  
 end
