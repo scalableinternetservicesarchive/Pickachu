@@ -33,7 +33,8 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def dashboard
+  end
 
   def create
     @user = User.new(user_params)    # Not the final implementation!
