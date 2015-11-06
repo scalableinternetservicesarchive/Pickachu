@@ -8,6 +8,14 @@ class PickupsController < ApplicationController
     @pickups = Pickup.all
     @pickup = Pickup.new
 
+
+    if params[:search]
+      # @user = User.find_by_name(params[:search])
+      @pickups = Pickup.where("uid=?",params[:search])
+      # @pickups = Pickup.search(params[:search]).order("created_at DESC")
+    else
+      @pickups = Pickup.order("created_at DESC")
+    end
   end
 
   # GET /pickups/1
