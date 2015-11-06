@@ -8,12 +8,18 @@ class PickupsController < ApplicationController
     @pickups = Pickup.all
     @pickup = Pickup.new
 
+
+    if params[:search]
+      @pickups = Pickup.search(params[:search]).order("created_at DESC")
+    else
+      @pickups = Pickup.order("created_at DESC")
+    end
   end
 
   # GET /pickups/1
   # GET /pickups/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /pickups/new
   def new
@@ -67,7 +73,7 @@ class PickupsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pickup
-      @pickup = Pickup.find(params[:id])
+      # @pickup = Pickup.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
