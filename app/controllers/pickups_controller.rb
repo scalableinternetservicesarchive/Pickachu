@@ -8,9 +8,14 @@ class PickupsController < ApplicationController
     @pickups = Pickup.all
     @pickup = Pickup.new
 
+    if params[:search_des]
+      @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+    else
+      @pickups = Pickup.order("created_at DESC")
+    end
 
-    if params[:search]
-      @pickups = Pickup.search(params[:search]).order("created_at DESC")
+    if params[:search_area].kind_of? Float
+      @pickups = Pickup.search_area(params[:search_area]).order("created_at DESC")
     else
       @pickups = Pickup.order("created_at DESC")
     end

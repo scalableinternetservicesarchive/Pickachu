@@ -50,6 +50,18 @@ So to issue bundle exec rake db:drop:all and if you want to remove all the migra
 If you want to change your models too, use rails d model.`
 
 
+### 8. about mysql
+mysqladmin -u root -p status
+
+sudo ln -s /tmp/mysql.sock /var/mysql/mysql.sock
+
+sudo vim /usr/local/mysql/my.cnf
+
+mysqld --help --verbose
+
+export PATH=${PATH}:/usr/local/mysql/bin
+
+
 ### Reference
  1. [Gem guides](http://guides.rubygems.org/command-reference/)
  2. [Rails guides](http://guides.rubyonrails.org/command_line.html)
