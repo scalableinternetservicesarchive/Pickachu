@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   get 'index' => "home#index"
 
-  get 'pickups' =>"pickups#index"
-  get 'pickups/index' =>"pickups#index", as: 'pickups_search'
+  # get 'pickups' =>"pickups#index"
+  get 'pickups' =>"pickups#index", as: 'pickups_search'
   
   get 'Login' =>'logini#login'
 

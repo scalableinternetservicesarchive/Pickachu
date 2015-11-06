@@ -10,9 +10,7 @@ class PickupsController < ApplicationController
 
 
     if params[:search]
-      # @user = User.find_by_name(params[:search])
-      @pickups = Pickup.where("uid=?",params[:search])
-      # @pickups = Pickup.search(params[:search]).order("created_at DESC")
+      @pickups = Pickup.search(params[:search]).order("created_at DESC")
     else
       @pickups = Pickup.order("created_at DESC")
     end
@@ -76,6 +74,8 @@ class PickupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pickup
       @pickup = Pickup.find(params[:id])
+      # @pickups = Pickup.all
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
