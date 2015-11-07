@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # get 'pickups' =>"pickups#index"
   get 'pickups' =>"pickups#index", as: 'pickups_search'
-  
+
   get 'Login' =>'logini#login'
 
   get 'signup' => 'users#new'
@@ -32,8 +32,7 @@ Rails.application.routes.draw do
   get 'comment' => 'users#comment'
   get 'users/comment' => "users#comment", as: 'users_search'
 
-
-
+  get 'dashboard' => 'users#dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
