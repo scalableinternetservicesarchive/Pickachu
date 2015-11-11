@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-32-198-148.us-west-2.compute.amazonaws.com/" port="80" type="tcp"></server>
+    <server host="" port="80" type="tcp"></server>
   </servers>
 
 
@@ -50,7 +50,7 @@
         <http url='/nearbies' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 10 seconds, user want to buy something so login -->
+      <!-- wait for up to 15 seconds, user want to buy something so login -->
       <thinktime value="15" random="true"></thinktime>
 
       <!-- go to sign up page: users#new -->
