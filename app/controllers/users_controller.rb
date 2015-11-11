@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if params[:search]
       @user = User.find_by_name(params[:search])
       if @user.present?
-        @pickups = Pickup.where("uid=?",@user.id)
+        @pickups = Pickup.where("user_id=?",@user.id)
       end
     end
     if params[:username]

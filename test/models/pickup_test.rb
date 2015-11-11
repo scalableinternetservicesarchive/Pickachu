@@ -2,19 +2,19 @@ require 'test_helper'
 
 class PickupTest < ActiveSupport::TestCase
   # it is in fixtures/pickups.yml
-  fixtures :pickups 
+  fixtures :pickups
 
   def test_pickups
 
-    sell_textbook_pickup = Pickup.new :uid => pickups(:sell_textbook).uid, 
-    								  :name => pickups(:sell_textbook).name, 
-    								  :long => pickups(:sell_textbook).long, 
-    								  :lat => pickups(:sell_textbook).lat, 
-    								  :obj_type => pickups(:sell_textbook).obj_type, 
-    								  :image_url => pickups(:sell_textbook).image_url, 
-    								  :price => pickups(:sell_textbook).price, 
-    								  :start_time => pickups(:sell_textbook).start_time, 
-    								  :end_time => pickups(:sell_textbook).end_time, 
+    sell_textbook_pickup = Pickup.new :user_id => pickups(:sell_textbook).user_id, 
+    								  :name => pickups(:sell_textbook).name,
+    								  :long => pickups(:sell_textbook).long,
+    								  :lat => pickups(:sell_textbook).lat,
+    								  :obj_type => pickups(:sell_textbook).obj_type,
+    								  :image_url => pickups(:sell_textbook).image_url,
+    								  :price => pickups(:sell_textbook).price,
+    								  :start_time => pickups(:sell_textbook).start_time,
+    								  :end_time => pickups(:sell_textbook).end_time,
     								  :description => pickups(:sell_textbook).description
    	# sample code
     # assert perl_book.save
