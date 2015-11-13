@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 sell_textbook:
-  uid: 'test_user1'
+  user_id: 'test_user1'
   name: 'Sell intro to economics in $30!'
   long: 19.32
   lat: 29.389
@@ -13,7 +13,7 @@ sell_textbook:
   description: 'classic book! WORTH to read!'
 
 free_notebook:
-  uid: 'test_user2'
+  user_id: 'test_user2'
   name: 'Free old note book'
   long: 39.9944
   lat: 319.003

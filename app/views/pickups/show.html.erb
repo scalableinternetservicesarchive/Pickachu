@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+<h1> <%= @pickup.name %> </h1>
+
 <p>
-  <strong>Uid:</strong>
-  <%= @pickup.uid %>
+  <strong>user_id:</strong>
+  <%= @pickup.user_id %>
 </p>
 
 <p>
@@ -49,6 +52,7 @@
   <strong>Description:</strong>
   <%= @pickup.description %>
 </p>
-
+</div>
+<!-- 
 <%= link_to 'Edit', edit_pickup_path(@pickup) %> |
-<%= link_to 'Back', pickups_path %>
+<%= link_to 'Back', pickups_path %> -->

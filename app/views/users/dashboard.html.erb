@@ -31,9 +31,9 @@
   <tbody>
 		<% @pickups = Pickup.all %>
     <% @pickups.each do |pickup| %>
-        <% if pickup.uid == current_user.id.to_s %>
+        <% if pickup.user_id == current_user.id %>
           <tr>
-            <td><%= pickup.uid %></td>
+            <td><%= pickup.user_id %></td>
             <td><%= pickup.name %></td>
             <td><%= pickup.image_url %></td>
             <td>
