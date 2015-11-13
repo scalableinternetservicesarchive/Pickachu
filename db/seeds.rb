@@ -17,9 +17,6 @@ u.save!;
 u = User.create!(name: 'Pp',email: 'pp@pickachu.com', password: '123456789', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00');
 u.save!;
 
-#User.create([name: 'Nick',email: 'nick@pickachu.com', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00']);
-#User.create([name: 'Yao',email: 'yao@pickachu.com', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00']);
-#User.create([name: 'PP',email: 'pp@pickachu.com', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00']);
 
 Pickup.delete_all;
 
