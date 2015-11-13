@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106054611) do
+ActiveRecord::Schema.define(version: 20151110221823) do
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20151106054611) do
   end
 
   create_table "pickups", force: :cascade do |t|
-    t.string   "uid",         limit: 255
+    t.integer  "user_id",     limit: 4
     t.string   "name",        limit: 255
     t.float    "long",        limit: 24
     t.float    "lat",         limit: 24
@@ -51,10 +51,9 @@ ActiveRecord::Schema.define(version: 20151106054611) do
     t.datetime "updated_at",                              null: false
     t.float    "rate",        limit: 53,    default: 0.0
     t.text     "comment",     limit: 65535
-    t.integer  "user_id",     limit: 4
   end
 
-  add_index "pickups", ["user_id"], name: "index_pickups_on_user_id", using: :btree
+  add_index "pickups", ["user_id"], name: "fk_rails_fcea262d4c", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
@@ -73,11 +72,10 @@ ActiveRecord::Schema.define(version: 20151106054611) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.integer  "user_id",                limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "pickups", "users"
+  add_foreign_key "pickups", "users", on_delete: :cascade
 end

@@ -1,5 +1,5 @@
 <%= bootstrap_form_for(@pickup) do |f| %>
-
+  <div class="modal-body">
   <% if @pickup.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pickup.errors.count, "error") %> prohibited this pickup from being saved:</h2>
@@ -14,7 +14,7 @@
 
   <div class="field">
     <h1><%= current_user.name %></h1>
-    <%= f.hidden_field :uid, required: true, class: 'form-control', value:current_user.id  %>
+    <%= f.hidden_field :user_id, required: true, class: 'form-control', value:current_user.id  %>
   </div>
 
   <div class="field">
@@ -26,41 +26,38 @@
   <div class="field">
     <%= f.text_field :lat ,:id=>"cur_lat" %>
   </div>
-  <div style ='width: 500px;'>
+  <!--div style ='width: 500px;'>
     <div id="geolocation" style='width: 450px; height: 200px;'></div>
-  </div>
+  </div-->
   <script>
-  var mapStyle = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2c3e50"},{"visibility":"on"}]}];
-
-  var handler = Gmaps.build('Google');
+  //var mapStyle = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2c3e50"},{"visibility":"on"}]}];
+  /*var handler = Gmaps.build('Google');
   handler.buildMap({
-       internal: {id: 'geolocation'},
-       provider: {
-                styles: mapStyle
-
-       }
+       internal: {id: 'geolocation'}
      }, function(){
          if(navigator.geolocation)
           navigator.geolocation.getCurrentPosition(displayOnMap);
-  });
-
+  });*/
+  if(navigator.geolocation)
+   navigator.geolocation.getCurrentPosition(displayOnMap);
   function displayOnMap(position){
-    var marker = handler.addMarker({
+    /*var marker = handler.addMarker({
       lat: position.coords.latitude,
       lng: position.coords.longitude
-    });
+    });*/
     $("#cur_long").val(position.coords.longitude);
     $("#cur_lat").val(position.coords.latitude);
-    handler.map.centerOn(marker);
-  };
- </script>
+    //handler.map.centerOn(marker);
 
-  <div class="field">
+  };
+
+ </script>
+ <div class="field">
     <%= f.number_field :obj_type %>
   </div>
-  <div class="field">
+  <!--div class="field">
     <%= f.text_field :image_url %>
-  </div>
+  </div-->
   <div class="field">
     <%= f.text_field :price %>
   </div>
@@ -73,7 +70,9 @@
   <div class="field">
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+    <%= f.button :sumbit, :class => "btn btn-primary" %>
   </div>
 <% end %>
