@@ -26,6 +26,8 @@
 Post your good!
 </button>
 
+<hr> 
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -39,6 +41,8 @@ Post your good!
     </div>
   </div>
 </div>
+
+
 
 <table class="table">
   <thead>
@@ -59,6 +63,21 @@ Post your good!
 
   <tbody>
     <% @pickups.each do |pickup| %>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        <!-- img url should be provided in the database entry -->
+          <img src="<%= asset_path 'taiyi.jpg' %>" alt="test pic">
+          <div class="caption">
+            <h3><%= pickup.name %></h3>
+            <h4> $<%= pickup.price %> </h4>
+            <h4> Seller: <%= pickup.user_id %> </h4>
+            <p><%= pickup.description %></p>
+            <p><%= link_to 'More info', pickup, :class => "btn btn-primary" %> <%= link_to 'Edit', edit_pickup_path(pickup), :class => "btn btn-default" %></p>
+          </div>
+        </div>
+      </div>
+
       <tr>
         <td><%= pickup.user_id %></td>
         <td><%= pickup.name %></td>
