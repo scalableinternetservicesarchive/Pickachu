@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   end
 
 
-  # get 'login' => "home#login"
-
   # get 'about' => "home#about"
 
   get 'pickachu' => "home#pickachu"
