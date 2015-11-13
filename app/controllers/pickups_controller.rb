@@ -4,13 +4,13 @@ class PickupsController < ApplicationController
 
 
   def index
-      @pickups = Pickup.all
       @pickup = Pickup.new
 
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
       else
-        @pickups = Pickup.order("created_at DESC")
+        @pickups = Pickup.order("updated_at DESC").take(15)
+        #@pickups = Pickup.order("created_at DESC")
       end
 
     # if params[:search_area].kind_of? Float
