@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   end
 
 
-  get 'login' => "home#login"
+  # get 'login' => "home#login"
 
-  get 'about' => "home#about"
+  # get 'about' => "home#about"
 
   get 'pickachu' => "home#pickachu"
 
@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 
   get 'pickups' =>"pickups#index"
 
-  get 'Login' =>'logini#login'
+  # get 'Login' =>'logini#login'
 
-  get 'signup' => 'users#new'
+  # get 'signup' => 'users#new'
 
   #Route for comment action
   get 'comment' => 'users#comment'
