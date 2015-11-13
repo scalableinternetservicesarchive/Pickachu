@@ -79,7 +79,7 @@ Post your good!
       </div>
 
       <tr>
-        <td><%= pickup.user_id %></td>
+        <td><a href="/users/<%= pickup.user_id%>"> <%= getUserName(pickup.user_id) %>  </a></td>
         <td><%= pickup.name %></td>
         <td><%= pickup.long.round(2) %></td>
         <td><%= pickup.lat.round(2) %></td>

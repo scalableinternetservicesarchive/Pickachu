@@ -3,10 +3,21 @@ class PickupsController < ApplicationController
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
 
+  #search for user name
+  def getUserName(id)
+    if id != nil
+      @user = User.find(id)
+    end
+    return @user.name
+  end
+  helper_method :getUserName
+
   def index
       @pickups = Pickup.all
       @pickup = Pickup.new
-
+      @users = User.all
+      puts("index");
+      puts(@users);
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
       else
