@@ -24,7 +24,7 @@ class PickupsControllerTest < ActionController::TestCase
 
   test "should create pickup" do
     assert_difference('Pickup.count') do
-      post :create, pickup: { description: @pickup.description, end_time: @pickup.end_time, image_url: @pickup.image_url, lat: @pickup.lat, long: @pickup.long, name: @pickup.name, price: @pickup.price, start_time: @pickup.start_time, obj_type: @pickup.obj_type, uid: @pickup.uid }
+      post :create, pickup: { description: @pickup.description, end_time: @pickup.end_time, image_url: @pickup.image_url, lat: @pickup.lat, long: @pickup.long, name: @pickup.name, price: @pickup.price, start_time: @pickup.start_time, obj_type: @pickup.obj_type, user_id: @pickup.user_id }
     end
     assert_redirected_to pickups_path
   end
@@ -40,7 +40,7 @@ class PickupsControllerTest < ActionController::TestCase
   end
 
   test "should update pickup" do
-    patch :update, id: @pickup, pickup: { description: @pickup.description, end_time: @pickup.end_time, image_url: @pickup.image_url, lat: @pickup.lat, long: @pickup.long, name: @pickup.name, price: @pickup.price, start_time: @pickup.start_time, obj_type: @pickup.obj_type, uid: @pickup.uid }
+    patch :update, id: @pickup, pickup: { description: @pickup.description, end_time: @pickup.end_time, image_url: @pickup.image_url, lat: @pickup.lat, long: @pickup.long, name: @pickup.name, price: @pickup.price, start_time: @pickup.start_time, obj_type: @pickup.obj_type, user_id: @pickup.user_id }
     assert_redirected_to pickup_path(assigns(:pickup))
   end
 
