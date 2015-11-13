@@ -1,0 +1,48 @@
+<div class="container">
+<h1>Your Profile</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+			<th>id</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% if current_user %>
+      <td><%= current_user.name %></td>
+      <td><%= current_user.email %></td>
+			<td><%= current_user.id %></td>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Pickup Id</th>
+      <th>Pickup Name</th>
+      <th>Pickup Photo</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+		<% @pickups = Pickup.all %>
+    <% @pickups.each do |pickup| %>
+        <% if pickup.uid == current_user.id.to_s %>
+          <tr>
+            <td><%= pickup.uid %></td>
+            <td><%= pickup.name %></td>
+            <td><%= pickup.image_url %></td>
+            <td>
+              <%= pickup.price %></td>
+            </td>
+          </tr>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
