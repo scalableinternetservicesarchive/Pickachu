@@ -2,11 +2,22 @@ class PickupsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
-  # GET /pickups
-  # GET /pickups.json
+
   def index
-    @pickups = Pickup.all
-    @pickup = Pickup.new
+      @pickups = Pickup.all
+      @pickup = Pickup.new
+
+      if params[:search_des]
+        @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+      else
+        @pickups = Pickup.order("created_at DESC")
+      end
+
+    # if params[:search_area].kind_of? Float
+    #   @pickups = Pickup.search_area(params[:search_area]).order("created_at DESC")
+    # else
+    #   @pickups = Pickup.order("created_at DESC")
+    # end
 
   end
 
@@ -68,6 +79,8 @@ class PickupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pickup
       @pickup = Pickup.find(params[:id])
+      # @pickups = Pickup.all
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

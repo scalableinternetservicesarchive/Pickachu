@@ -50,6 +50,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 gem "devise-encryptable"
 
+
 group :production do
   gem 'rails_12factor'
 end

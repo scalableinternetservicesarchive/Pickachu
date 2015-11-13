@@ -5,7 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Pickup.delete_all;
 
 Pickup.create([uid: 1000,  name: 'iPhone', long: -118.3, lat: 33.98, price:9999.99, description: 'Legit iPhone 10000']);
@@ -19,4 +18,3 @@ Pickup.create([uid: 3,  name: 'Alcohols', long: -118.90, lat: 33.14, price:9999.
 Pickup.create([uid: 4,  name: 'Jewelry', long: -118.50, lat: 33.34, price:9999.99, description:'Jewelry']);
 Pickup.create([uid: 5,  name: 'Coffeemakers', long: -118.30, lat: 33.54, price:9999.99, description:'Selling coffeemakers']);
 Pickup.create([uid: 6,  name: 'Fridge', long: -118.48, lat: 34.94, price:9999.99, description:'Unused fridge']);
-Pickup.create([uid: 7,  name: 'basketball', long: -118.20, lat: 33.04, price:9999.99, description:'Unused basketball']);
