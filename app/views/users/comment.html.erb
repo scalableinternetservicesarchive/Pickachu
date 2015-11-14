@@ -2,7 +2,7 @@
 <h1>Rate Your Trader</h1>
 <%= form_tag users_search_path, :method => "get" do %>
 	<p>
-		Put Name Here:
+		<h3>Put Name Here:</h3>
 		<%= text_field_tag :search, params[:search] %>
 		<%= submit_tag "search", :name => nil, class: "btn btn-primary" %>
 	</p>
@@ -11,19 +11,19 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Reputation</th>
-      <th>Latest Comment</th>
+      <th><h3>Name</h3></th>
+      <th><h3>Email</h3></th>
+      <th><h3>Reputation</h3></th>
+      <th><h3>Latest Comment</h3></th>
     </tr>
   </thead>
   <tbody>
   	<% if @user.present? %>
-      <td><%= @user.name %></td>
-      <td><%= @user.email %></td>
-      <td><%= @user.reputation.round(2) %></td>
+      <td><h3><%= @user.name %></h3></td>
+      <td><h3><%= @user.email %></h3></td>
+      <td><h3><%= @user.reputation.round(2) %></h3></td>
       <% if @latestPickup.present? %>
-        <td><%= @latestPickup.comment %></td>
+        <td><h3><%= @latestPickup.comment %></h3></td>
       <% end %>
     <% end %>
   </tbody>
@@ -32,31 +32,32 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Pickup Id</th>
-      <th>Pickup Name</th>
-      <th>Pickup Photo</th>
-      <th>Rate this Trade</th>
+      <th><h3>Pickup Id</h3></th>
+      <th><h3>Pickup Name</h3></th>
+      <th><h3>Pickup Photo</h3></th>
+      <th><h3>Rate this Trade</h3></th>
     </tr>
   </thead>
 
   <tbody>
     <% Array(@pickups).each do |pickup| %> 
         <tr>
-          <td><%= pickup.id %></td>
-          <td><%= pickup.name %></td>
+          <td><h4><%= pickup.id %></h4></td>
+          <td><h4><%= pickup.name %></h4></td>
           <td><%= image_tag pickup.avatar.url(:thumb) %></td>
           <% if pickup.rate == 0 %>
           <td>
             <%= form_tag users_search_path, :method => "get" do %>
             <%= select_tag(:rep,options_for_select([['1',1],['2',2],['3',3],['4',4],['5',5]], 5)) %>
             <%= text_field_tag :comment, nil, :required => true %>
+            <%= hidden_field_tag "search", @user.name %>
             <%= hidden_field_tag "username", @user.name %>
             <%= hidden_field_tag "pickupid", pickup.id %>
             <%= submit_tag "Rate", :name => nil  %>
             <% end %>
           </td>
           <% else %>
-          <td>Already Rated</td>
+            <td><h4>Already Rated</h4></td>
           <% end %>
         </tr> 
     <% end %>
