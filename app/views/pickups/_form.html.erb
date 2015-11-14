@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@pickup) do |f| %>
+<%= bootstrap_form_for @pickup , url: pickups_path, html: { multipart: true } do |f| %>
   <div class="modal-body">
   <% if @pickup.errors.any? %>
     <div id="error_explanation">
@@ -55,9 +55,9 @@
  <div class="field">
     <%= f.number_field :obj_type %>
   </div>
-  <!--div class="field">
-    <%= f.text_field :image_url %>
-  </div-->
+  <div class="field">
+    <%= f.file_field :avatar %>
+  </div>
   <div class="field">
     <%= f.text_field :price %>
   </div>

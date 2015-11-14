@@ -49,7 +49,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'autoprefixer-rails'
 gem "devise-encryptable"
-
+gem "paperclip", "~> 4.3"
 
 group :production do
   gem 'rails_12factor'

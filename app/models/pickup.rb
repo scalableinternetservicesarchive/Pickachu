@@ -1,5 +1,6 @@
 class Pickup < ActiveRecord::Base
-
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/twu.jpg"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 #  attr_accessible :name, :description
 
   validates :name, presence: true, uniqueness: true
@@ -19,7 +20,7 @@ class Pickup < ActiveRecord::Base
 # (37, -122) 是你傳入的位置
 # (lat, lng) 是 database 裡面，經緯度的 column name
 # markers 是 database 的 table name
-# SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) ) 
+# SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) )
 # * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin(radians(lat)) ) ) AS distance
 # FROM markers
 
