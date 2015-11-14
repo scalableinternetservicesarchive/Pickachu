@@ -14,14 +14,17 @@
       <th>Name</th>
       <th>Email</th>
       <th>Reputation</th>
+      <th>Latest Comment</th>
     </tr>
   </thead>
-
   <tbody>
   	<% if @user.present? %>
       <td><%= @user.name %></td>
       <td><%= @user.email %></td>
       <td><%= @user.reputation.round(2) %></td>
+      <% if @latestPickup.present? %>
+        <td><%= @latestPickup.comment %></td>
+      <% end %>
     <% end %>
   </tbody>
 </table>
@@ -37,23 +40,25 @@
   </thead>
 
   <tbody>
-    <% Array(@pickups).each do |pickup| %>
-        <% if pickup.rate == 0 %>
-          <tr>
-            <td><%= pickup.id %></td>
-            <td><%= pickup.name %></td>
-            <td><%= pickup.image_url %></td>
-            <td>
-              <%= form_tag users_search_path, :method => "get" do %>
-              <%= select_tag(:rep,options_for_select([['1',1],['2',2],['3',3],['4',4],['5',5]], 5)) %>
-              <%= text_field_tag :comment, nil, :required => true %>
-              <%= hidden_field_tag "username", @user.name %>
-              <%= hidden_field_tag "pickupid", pickup.id %>
-              <%= submit_tag "Rate", :name => nil  %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
+    <% Array(@pickups).each do |pickup| %> 
+        <tr>
+          <td><%= pickup.id %></td>
+          <td><%= pickup.name %></td>
+          <td><%= image_tag pickup.avatar.url(:thumb) %></td>
+          <% if pickup.rate == 0 %>
+          <td>
+            <%= form_tag users_search_path, :method => "get" do %>
+            <%= select_tag(:rep,options_for_select([['1',1],['2',2],['3',3],['4',4],['5',5]], 5)) %>
+            <%= text_field_tag :comment, nil, :required => true %>
+            <%= hidden_field_tag "username", @user.name %>
+            <%= hidden_field_tag "pickupid", pickup.id %>
+            <%= submit_tag "Rate", :name => nil  %>
+            <% end %>
+          </td>
+          <% else %>
+          <td>Already Rated</td>
+          <% end %>
+        </tr> 
     <% end %>
   </tbody>
 </table>

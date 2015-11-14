@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @user = User.find_by_name(params[:search])
       if @user.present?
         @pickups = Pickup.where("user_id=?",@user.id)
+        @latestPickup = @pickups.order("updated_at").last
       end
     end
     if params[:username]
