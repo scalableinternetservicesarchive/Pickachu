@@ -35,6 +35,15 @@ class PickupsController < ApplicationController
   # GET /pickups/1
   # GET /pickups/1.json
   def show
+      @hash = Gmaps4rails.build_markers(@pickup) do |pickup, marker|
+      marker.lat pickup.lat
+      marker.lng pickup.long
+      marker.title pickup.name
+      marker.infowindow pickup.description
+
+      end
+
+
   end
 
   # GET /pickups/new
