@@ -3,19 +3,43 @@ class NearbiesController < ApplicationController
 
   # GET /nearbies
   # GET /nearbies.json
+
+    #search for user name
+  def getUserName(id)
+    if id != nil
+      @user = User.find(id)
+    end
+    return @user.name
+  end
+  helper_method :getUserName
+
   def index
     @pickups = Pickup.all
     @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
       marker.lat pickup.lat
       marker.lng pickup.long
       marker.title pickup.name
-      marker.infowindow pickup.description
+      marker.infowindow '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">' + pickup.name + '</h1>'+
+      '<div id="bodyContent">'+
+      '<img src="' + pickup.avatar.url + '" class="pickup-img">' +
+      '<h3> $' + pickup.price.to_s + '</h3>' +
+      '<h3> Seller: ' + getUserName(pickup.user_id) + '</h3>' +
+      '<p>' + pickup.description + '</p>' +
+      '<p> <a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> PICK IT UP! </a>' +
+      '<a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> MORE INFO </a> </p>' +
+      '</div>'+
+      '</div>';
 
     end
     @pickups.each do |pickup|
       puts(pickup)
     end
   end
+
+
 
   # GET /nearbies/1
   # GET /nearbies/1.json

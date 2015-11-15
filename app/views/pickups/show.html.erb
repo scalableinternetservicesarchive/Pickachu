@@ -51,15 +51,18 @@ handler.buildMap({
   internal: {id: 'pickup_map'},
   provider: {
       styles: mapStyle
-  }
+  },
+  zoom: 15
 }, function(){
   console.log('map should be rendered');
   var markers = handler.addMarkers(<%=raw @hash.to_json%>);
           if(navigator.geolocation)
           {
             navigator.geolocation.getCurrentPosition(displayOnMap);
-            // handler.bounds.extendWith(markers);
-            // handler.fitMapToBounds();
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            handler.getMap().setZoom(15);
+
           }
 
 });
