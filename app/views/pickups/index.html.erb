@@ -39,7 +39,7 @@
           $("#lat").val(position.coords.latitude);
         };
       </script>
-      <%= text_field_tag :search_area, params[:search_area], placeholder: "Input Miles" %>
+      <%= number_field_tag :search_area, params[:search_area], placeholder: "Input Miles" %>
 
       <button class="btn btn-primary">Search within miles</button>
     </div>

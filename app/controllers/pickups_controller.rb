@@ -23,8 +23,7 @@ class PickupsController < ApplicationController
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
       elsif params[:search_area]
-        #@pickups = Pickup.search_area(params[:search_area], params[:lng], params[:lat])
-        @pickups = Pickup.search_area(params[:search_type].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
+        @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
       elsif params[:search_type]
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else

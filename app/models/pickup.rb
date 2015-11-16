@@ -20,10 +20,10 @@ class Pickup < ActiveRecord::Base
 
   def self.search_area(miles, lng, lat)
     where("'long' > ? AND 'long' < ? AND 'lat' > ? AND 'lat' < ?",
-            lng - miles, #/69
-            lng + miles,
-            lat - miles, #69.712
-            lat + miles)
+            lng - miles.to_f/69, #/69
+            lng + miles.to_f/69,
+            lat - miles.to_f/69.712, #69.712
+            lat + miles.to_f/69.712)
   end
 
 # 3959 是以 mile 為單位的常數，若要以 km 計，請替換成 6371
