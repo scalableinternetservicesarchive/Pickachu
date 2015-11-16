@@ -17,7 +17,7 @@ class NearbiesController < ApplicationController
     @pickups = Pickup.all
     @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
       marker.lat pickup.lat
-      marker.lng pickup.long
+      marker.lng pickup.lng
       marker.title pickup.name
       marker.infowindow '<div id="content">'+
       '<div id="siteNotice">'+

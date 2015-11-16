@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113231059) do
+ActiveRecord::Schema.define(version: 20151116105358) do
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20151113231059) do
   create_table "pickups", force: :cascade do |t|
     t.integer  "user_id",             limit: 4
     t.string   "name",                limit: 255
-    t.float    "long",                limit: 24
+    t.float    "lng",                 limit: 24
     t.float    "lat",                 limit: 24
     t.integer  "obj_type",            limit: 4
     t.string   "image_url",           limit: 255

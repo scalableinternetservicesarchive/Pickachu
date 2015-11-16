@@ -37,7 +37,7 @@ class PickupsController < ApplicationController
   def show
       @hash = Gmaps4rails.build_markers(@pickup) do |pickup, marker|
       marker.lat pickup.lat
-      marker.lng pickup.long
+      marker.lng pickup.lng
       marker.title pickup.name
       marker.infowindow pickup.description
 
@@ -105,6 +105,6 @@ class PickupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pickup_params
-      params.require(:pickup).permit(:user_id, :name, :long, :lat, :obj_type, :image_url, :price, :start_time, :end_time, :description, :avatar)
+      params.require(:pickup).permit(:user_id, :name, :lng, :lat, :obj_type, :image_url, :price, :start_time, :end_time, :description, :avatar)
     end
 end
