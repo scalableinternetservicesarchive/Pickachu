@@ -12,6 +12,12 @@ class Pickup < ActiveRecord::Base
     where("description like ?", "%#{query}%")
   end
 
+  def self.search_type(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("obj_type like ?", "%#{query}%")
+  end
+
+
   def self.search_area(query)
     where("description like ?", "%#{query}%")
   end

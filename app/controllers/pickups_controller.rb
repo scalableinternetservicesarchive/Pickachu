@@ -19,6 +19,8 @@ class PickupsController < ApplicationController
       puts(@users);
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+      elsif params[:search_type]
+        @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC")
       else
         @pickups = Pickup.order("updated_at DESC").take(15)
         #@pickups = Pickup.order("created_at DESC")
