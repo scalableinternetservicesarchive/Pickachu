@@ -12,6 +12,21 @@ class PickupsController < ApplicationController
   end
   helper_method :getUserName
 
+  def getLocation()
+    if(navigator.geolocation)
+     navigator.geolocation.getCurrentPosition(displayOnMap)
+    function displayOnMap(position){
+      /*var marker = handler.addMarker({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      });*/
+      $("#cur_long").val(position.coords.longitude);
+      $("#cur_lat").val(position.coords.latitude);
+      //handler.map.centerOn(marker);
+
+    };
+  end
+
   def index
       @pickup = Pickup.new
       @users = User.all
@@ -19,6 +34,9 @@ class PickupsController < ApplicationController
       puts(@users);
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+      elsif params[:search_area]
+        getLocation()
+        @pickups = Pickup.search_area(params[:search_area], current_user)
       else
         @pickups = Pickup.order("updated_at DESC").take(15)
         #@pickups = Pickup.order("created_at DESC")

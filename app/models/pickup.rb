@@ -12,8 +12,8 @@ class Pickup < ActiveRecord::Base
     where("description like ?", "%#{query}%")
   end
 
-  def self.search_area(query)
-    where("description like ?", "%#{query}%")
+  def self.search_area(miles, user)
+    #where(" < %#{miles}%")
   end
 
 # 3959 是以 mile 為單位的常數，若要以 km 計，請替換成 6371

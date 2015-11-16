@@ -13,13 +13,13 @@
     </div>
   <% end %>
 
-<!--   <%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+<%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-area-form") do %>
     <div class="input-append">
-      <%= text_field_tag :search_des, params[:search_des], placeholder: "Search" %>
+      <%= number_field_tag :search_area, params[:search_area], placeholder: "Input Miles" %>
 
       <button class="btn btn-primary">Search within miles</button>
     </div>
-  <% end %> -->
+  <% end %>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
