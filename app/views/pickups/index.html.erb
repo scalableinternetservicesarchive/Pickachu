@@ -29,14 +29,16 @@
 
 <%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-area-form") do %>
     <div class="input-append">
-      <%= hidden_field :lng, params[:lng], :id=>"lng"%>
-      <%= hidden_field :lat, params[:lat], :id=>"lat"%>
+      <% params.delete :lng %>
+      <% params.delete :lat %>
+      <%= hidden_field :lng, params[:lng], :id=>"curlng"%>
+      <%= hidden_field :lat, params[:lat], :id=>"curlat"%>
       <script>
         if(navigator.geolocation)
           navigator.geolocation.getCurrentPosition(displayOnMap);
         function displayOnMap(position){
-          $("#lng").val(position.coords.longitude);
-          $("#lat").val(position.coords.latitude);
+          $("#curlng").val(position.coords.longitude);
+          $("#curlat").val(position.coords.latitude);
         };
       </script>
       <%= number_field_tag :search_area, params[:search_area], placeholder: "Input Miles" %>
