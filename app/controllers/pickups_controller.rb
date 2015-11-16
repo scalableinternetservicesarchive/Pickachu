@@ -12,6 +12,9 @@ class PickupsController < ApplicationController
   end
   helper_method :getUserName
 
+  def getLocation
+  end
+
   def index
       @pickup = Pickup.new
       @users = User.all
@@ -19,6 +22,10 @@ class PickupsController < ApplicationController
       puts(@users);
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+      elsif params[:search_area]
+        @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
+      elsif params[:search_type]
+        @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
         @pickups = Pickup.order("updated_at DESC").take(15)
         #@pickups = Pickup.order("created_at DESC")

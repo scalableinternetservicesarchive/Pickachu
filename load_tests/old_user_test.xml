@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-34-5-249.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-34-55-21.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -54,14 +54,48 @@
       <thinktime value="15" random="true"></thinktime>
 
       <!-- go to sign up page: users#new -->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="random_user_num"/>
+      </setdynvars>
+
       <request>
-        <http url='/users/sign_in' version='1.1' method='GET'></http>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/users/sign_in" version="1.1" method="GET"/>
       </request>
 
       <!-- wait for up to 3 seconds, user is fill in new user-->
       <thinktime value="3" random="true"></thinktime>
 
-      <!-- user login (not write yet)-->
+      <!-- user login (not test yet)-->
+      <!-- one user -->
+      <request subst="true">
+        <http 
+          url="/users/sign_in" 
+          version="1.1" 
+          contents="utf8=%E2%9C%93&amp;
+          user%5Bemail%5D=test@gmail.com&amp;
+          session%5Bpassword%5D=12345678&amp;" 
+          content_type="application/x-www-form-urlencoded" 
+          method="POST">
+        </http>
+      </request>
+
+      <!-- many user login? -->
+      <!--       
+      <request subst="true">
+        <http 
+          url="/users/sign_in" 
+          version="1.1" 
+          contents="utf8=%E2%9C%93&amp;
+          authenticity_token=%%_authenticity_token%%&amp;
+          session%5Bname%5D=user%%_random_user_num%%&amp;
+          user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;
+          session%5Bpassword%5D=111111&amp;
+          randon_email_name%%&amp;
+          commit=Login" 
+          content_type="application/x-www-form-urlencoded" method="POST">
+        </http>
+      </request> -->
 
       <!-- after login, user should redirect to pickups page-->
       <!-- wait 2 sec, user decide to take a look pick list -->

@@ -12,8 +12,18 @@ class Pickup < ActiveRecord::Base
     where("description like ?", "%#{query}%")
   end
 
-  def self.search_area(query)
-    where("description like ?", "%#{query}%")
+  def self.search_type(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("obj_type like ?", "%#{query}%")
+  end
+
+
+  def self.search_area(miles, lng, lat)
+    where("'long' > ? AND 'long' < ? AND 'lat' > ? AND 'lat' < ?",
+            lng - miles.to_f/69, #/69
+            lng + miles.to_f/69,
+            lat - miles.to_f/69.712, #69.712
+            lat + miles.to_f/69.712)
   end
 
 # 3959 是以 mile 為單位的常數，若要以 km 計，請替換成 6371
