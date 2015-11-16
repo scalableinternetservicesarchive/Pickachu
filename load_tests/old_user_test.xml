@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-34-5-249.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-34-55-21.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -96,8 +96,6 @@
           content_type="application/x-www-form-urlencoded" method="POST">
         </http>
       </request> -->
-
-      <!-------------------------------------->
 
       <!-- after login, user should redirect to pickups page-->
       <!-- wait 2 sec, user decide to take a look pick list -->
