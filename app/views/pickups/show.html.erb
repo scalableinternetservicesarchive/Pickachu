@@ -17,7 +17,11 @@
             <h4> $<%= @pickup.price %> </h4>
             <h4> Seller: <%= @pickup.user_id %> </h4>
             <p><%= @pickup.description %></p>
-            <p><%= link_to 'More info', @pickup, :class => "btn btn-primary" %> <%= link_to 'Edit', edit_pickup_path(@pickup), :class => "btn btn-default" %></p>
+          <% if @pickup.pickedup == false %>
+            <p><%= link_to 'Pick it up', pickitup_path(@pickup), :class => "btn btn-primary" %> </p>
+          <% else %>
+          <a class="btn btn-default disabled"> Picked up </a>
+          <% end %>
           </div>
         </div>
       </div>
@@ -61,7 +65,7 @@ handler.buildMap({
             navigator.geolocation.getCurrentPosition(displayOnMap);
             handler.bounds.extendWith(markers);
             handler.fitMapToBounds();
-            handler.getMap().setZoom(15);
+            handler.getMap().setZoom(8);
 
           }
 
@@ -104,7 +108,7 @@ handler.buildMap({
 
 <p>
   <strong>Long:</strong>
-  <%= @pickup.long.round(2) %>
+  <%= @pickup.lng.round(2) %>
 </p>
 
 <p>

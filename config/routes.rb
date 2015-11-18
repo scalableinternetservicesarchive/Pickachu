@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # get 'pickups' =>"pickups#index"
   get 'pickups' =>"pickups#index", as: 'pickups_search'
 
+  get '/pickups/pickup/:id', to: 'pickups#pickup', as: 'pickitup'
+
   # get 'Login' =>'logini#login'
 
   # get 'signup' => 'users#new'

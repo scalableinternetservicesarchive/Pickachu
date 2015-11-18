@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116105358) do
+ActiveRecord::Schema.define(version: 20151117232316) do
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -47,14 +47,15 @@ ActiveRecord::Schema.define(version: 20151116105358) do
     t.date     "start_time"
     t.date     "end_time"
     t.text     "description",         limit: 65535
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.float    "rate",                limit: 53,    default: 0.0
     t.text     "comment",             limit: 65535
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.boolean  "pickedup",                          default: false
   end
 
   add_index "pickups", ["user_id"], name: "fk_rails_fcea262d4c", using: :btree

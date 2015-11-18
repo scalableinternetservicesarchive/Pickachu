@@ -1,34 +1,42 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Pickups</h1>
+<h1>Pickups</h1>
 
 
 
 <!--<%= link_to "getLocation", pickups_path(@getLocation, :lng => @lng, :lat => @lat) %> -->
-
+<div class="row">
 <%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-form") do %>
-    <div class="input-append">
-      <%= text_field_tag :search_des, params[:search_des], placeholder: "Search" %>
+    <div class="input-group">
+      <%= text_field_tag :search_des, params[:search_des], placeholder: "Search", :class => "form-control" %>
       <!-- In order to have the "search" icon int the button, we need to use plain HTML instead
            of using a Rails form helper -->
-      <button class="btn btn-primary">Search Description</button>
+      <span class="input-group-btn">
+        <button class="btn btn-primary">Search by Description</button>
+      </span>
       <!-- <button class="btn" type="submit"><i class="icon-search"></i></button> -->
     </div>
   <% end %>
 
 <%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-form") do %>
-    <div class="input-append">
-      <%= number_field_tag :search_type, params[:search_type], placeholder: "Search" %>
+    <div class="input-group">
+      <%= number_field_tag :search_type, params[:search_type], placeholder: "Search", :class => "form-control" %>
       <!-- In order to have the "search" icon int the button, we need to use plain HTML instead
            of using a Rails form helper -->
-      <button class="btn btn-primary">Search type</button>
+      <span class="input-group-btn">
+        <button class="btn btn-primary">Search by type</button>
+      </span>
       <!-- <button class="btn" type="submit"><i class="icon-search"></i></button> -->
     </div>
   <% end %>
 
 <%= form_tag(pickups_search_path, :method => "get", class: "navbar-form", id: "search-area-form") do %>
-    <div class="input-append">
+    <div class="input-group">
+      <%= number_field_tag :search_area, params[:search_area], placeholder: "Input Miles", :class => "form-control" %>
+      <span class="input-group-btn">
+        <button class="btn btn-primary">Search within miles</button>
+      </span>
       <%= hidden_field :lng, params[:lng], :id=>"lng"%>
       <%= hidden_field :lat, params[:lat], :id=>"lat"%>
       <script>
@@ -39,12 +47,11 @@
           $("#lat").val(position.coords.latitude);
         };
       </script>
-      <%= number_field_tag :search_area, params[:search_area], placeholder: "Input Miles" %>
 
-      <button class="btn btn-primary">Search within miles</button>
     </div>
   <% end %>
 
+</div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
 Create your PickUp!

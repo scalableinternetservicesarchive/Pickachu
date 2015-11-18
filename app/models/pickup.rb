@@ -26,6 +26,8 @@ class Pickup < ActiveRecord::Base
             lat + miles.to_f/69.712)
   end
 
+
+
 # 3959 是以 mile 為單位的常數，若要以 km 計，請替換成 6371
 # (37, -122) 是你傳入的位置
 # (lat, lng) 是 database 裡面，經緯度的 column name

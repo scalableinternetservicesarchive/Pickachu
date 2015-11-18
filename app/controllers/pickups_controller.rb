@@ -49,8 +49,6 @@ class PickupsController < ApplicationController
       marker.infowindow pickup.description
 
       end
-
-
   end
 
   # GET /pickups/new
@@ -60,6 +58,13 @@ class PickupsController < ApplicationController
 
   # GET /pickups/1/edit
   def edit
+  end
+
+  # PUT /pickups/pickup/1
+  def pickup
+    @pickup = Pickup.find(params[:id])
+    @pickup.update_attribute(:pickedup, 'true');
+    redirect_to(:back)
   end
 
   # POST /pickups
