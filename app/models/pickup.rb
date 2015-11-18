@@ -19,7 +19,7 @@ class Pickup < ActiveRecord::Base
 
 
   def self.search_area(miles, lng, lat)
-    where("'long' > ? AND 'long' < ? AND 'lat' > ? AND 'lat' < ?",
+    where("lng > ? AND lng < ? AND lat > ? AND lat < ?",
             lng - miles.to_f/69, #/69
             lng + miles.to_f/69,
             lat - miles.to_f/69.712, #69.712

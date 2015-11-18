@@ -39,12 +39,13 @@
       </span>
       <%= hidden_field :lng, params[:lng], :id=>"lng"%>
       <%= hidden_field :lat, params[:lat], :id=>"lat"%>
+
       <script>
         if(navigator.geolocation)
           navigator.geolocation.getCurrentPosition(displayOnMap);
         function displayOnMap(position){
-          $("#lng").val(position.coords.longitude);
-          $("#lat").val(position.coords.latitude);
+          $("#curlng").val(position.coords.longitude);
+          $("#curlat").val(position.coords.latitude);
         };
       </script>
 
