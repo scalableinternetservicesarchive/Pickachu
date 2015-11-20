@@ -1,6 +1,10 @@
 class Pickup < ActiveRecord::Base
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/twu.jpg"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  has_attached_file :avatar, styles: {
+    tiny: "48x48#",
+    medium: "300x300#",
+    thumb: "100x100#"
+  }, default_url: "/images/rwby.jpg"
+  validates_attachment_content_type :avatar, content_type: ["image/jpg", "image/jpeg","image/png","image/gif"]
 #  attr_accessible :name, :description
 
   validates :name, presence: true, uniqueness: true
