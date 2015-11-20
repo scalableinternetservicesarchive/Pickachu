@@ -9,9 +9,8 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-230-24.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-11-58-65.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
-
 
   <load>
     <arrivalphase phase="1" duration="30" unit="second">
@@ -72,12 +71,24 @@
         <http 
           url="/users/sign_in" 
           version="1.1" 
-          contents="utf8=%E2%9C%93&amp;user%5Bemail%5D=test@gmail.com&amp;session%5Bpassword%5D=12345678&amp;"
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail=test@gmail.com&amp;user%5Bpassword=12345678&amp;commit=Log+in'
           content_type="application/x-www-form-urlencoded" 
           method="POST">
         </http>
       </request>
 
+
+
+<!--       <request subst="true">
+        <dyn_variable name="created_submission_url" re="[Ll]ocation: (http://.*)\r"/>
+        <dyn_variable name="created_submission_id" re="[Ll]ocation: http://.*/submissions/(.*)\r"/>
+        <http
+          url='/submissions'
+          version='1.1'
+          method='POST'
+          contents='submission%5Btitle%5D=link_%%_random_submission_name%%&amp;submission%5Burl%5D=http%3A%2F%2Fwww.article.com%2F%%_random_submission_name%%&amp;submission%5Bcommunity_id%5D=%%_created_community_id%%&amp;commit=Create+Submission'>
+        </http>
+      </request> -->
       <!-- many user login? -->
 <!--       <request subst="true">
         <http 
@@ -105,9 +116,9 @@
       <!-- user decide to create a new pickup (not write yet) -->
       <request subst="true">
         <http 
-          url="pickups/new" 
-          version="1.1" 
-          contents="utf8=%E2%9C%93&amp;user_id=1&amp;name=iPhone&amp;lng=-118.3&amp;lat=33.98&amp;price=199.99&amp;description=Legit%5BiPhone&amp;"
+          url='pickups/new'
+          version='1.1'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser%5Bid=1&amp;pickup%5Bname=iPhone&amp;cur%5Blong=-118.3&amp;cur%5Blat=33.98&amp;pickup%5Bobj%5Btype=1&amp;pickup%5Bprice=199.99&amp;description=Legit%5BiPhone&amp;'
           content_type="application/x-www-form-urlencoded" 
           method="POST">
         </http>
