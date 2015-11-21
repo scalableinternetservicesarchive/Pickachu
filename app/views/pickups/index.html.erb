@@ -37,9 +37,10 @@
       <span class="input-group-btn">
         <button class="btn btn-primary">Search within miles</button>
       </span>
-      <%= hidden_field :lng, params[:lng], :id=>"lng"%>
-      <%= hidden_field :lat, params[:lat], :id=>"lat"%>
-
+      <% params.delete :lng %>
+      <% params.delete :lat %>
+      <%= hidden_field :lng, params[:lng], :id=>"curlng"%>
+      <%= hidden_field :lat, params[:lat], :id=>"curlat"%>
       <script>
         if(navigator.geolocation)
           navigator.geolocation.getCurrentPosition(displayOnMap);
