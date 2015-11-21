@@ -19,6 +19,10 @@ u.save!;
 u = User.create!(name: 'test',email: 'test@gmail.com', password: '12345678', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00');
 u.save!;
 
+1.upto(5000) do |i|
+	u = User.create!(name: "user#{i}",email: "user#{i}@test.com", password: '12345678', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00');
+	u.save!;
+end
 
 Pickup.delete_all;
 
