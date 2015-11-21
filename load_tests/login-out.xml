@@ -35,30 +35,12 @@
 
   <sessions>
     <session name="http-test" probability="100" type="ts_http">
-
-      <!-- start out home page. home#index -->
-      <request>
-        <http url='/' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 0.5 seconds, user is decide to go to map to see nearby  -->
-      <thinktime value="0.5" random="true"></thinktime>
-
-      <!-- visit the nearby map -->
-      <request>
-        <http url='/nearbies' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 15 seconds, user want to buy something so login -->
-      <thinktime value="15" random="true"></thinktime>
-
-      <!-- go to sign up page: users#new -->
+      <!-- go to sign in page: users#new -->
       <setdynvars sourcetype="random_number" start="1" end="150">
         <var name="random_user_num"/>
       </setdynvars>
 
       <request>
-        <dyn_variable name="authenticity_token"/>
         <http url="/users/sign_in" version="1.1" method="GET"/>
       </request>
 
@@ -71,40 +53,11 @@
         <http
           url="/users/sign_in"
           version="1.1"
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;user%5Bemail=test@gmail.com&amp;user%5Bpassword=12345678&amp;commit=Log+in'
+          contents='utf8=%E2%9C%93&amp;user%5Bemail=test@gmail.com&amp;user%5Bpassword=12345678&amp;commit=Log+in'
           content_type="application/x-www-form-urlencoded"
           method="POST">
         </http>
       </request>
-
-
-
-<!--       <request subst="true">
-        <dyn_variable name="created_submission_url" re="[Ll]ocation: (http://.*)\r"/>
-        <dyn_variable name="created_submission_id" re="[Ll]ocation: http://.*/submissions/(.*)\r"/>
-        <http
-          url='/submissions'
-          version='1.1'
-          method='POST'
-          contents='submission%5Btitle%5D=link_%%_random_submission_name%%&amp;submission%5Burl%5D=http%3A%2F%2Fwww.article.com%2F%%_random_submission_name%%&amp;submission%5Bcommunity_id%5D=%%_created_community_id%%&amp;commit=Create+Submission'>
-        </http>
-      </request> -->
-      <!-- many user login? -->
-<!--       <request subst="true">
-        <http
-          url="/users/sign_in"
-          version="1.1"
-          contents="utf8=%E2%9C%93&amp;
-          authenticity_token=%%_authenticity_token%%&amp;
-          session%5Bname%5D=user%%_random_user_num%%&amp;
-          user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;
-          session%5Bpassword%5D=111111&amp;
-          randon_email_name%%&amp;
-          commit=Login"
-          content_type="application/x-www-form-urlencoded"
-          method="POST">
-        </http>
-      </request> -->
 
       <!-- after login, user should redirect to pickups page-->
       <!-- wait 2 sec, user decide to take a look pick list -->
@@ -112,18 +65,6 @@
       <request>
         <http url='/pickups' version='1.1' method='GET'></http>
       </request>
-
-      <!-- user decide to create a new pickup (not write yet) -->
-      <request subst="true">
-        <http
-          url='pickups/new'
-          version='1.1'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser%5Bid=1&amp;pickup%5Bname=iPhone&amp;cur%5Blong=-118.3&amp;cur%5Blat=33.98&amp;pickup%5Bobj%5Btype=1&amp;pickup%5Bprice=199.99&amp;description=Legit%5BiPhone&amp;'
-          content_type="application/x-www-form-urlencoded" 
-          method="POST">
-        </http>
-      </request>
-
 
       <!-- wait for up to 5 seconds, user want to browse maps again -->
       <thinktime value="5" random="true"></thinktime>
