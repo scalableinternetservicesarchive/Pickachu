@@ -8,7 +8,7 @@ Sample command for load testing
 
 3. Compile report: `cd /home/ec2-user/.tsung/log/20151120-1002` and ` tsung_stats.pl` to compile
 
-4. Download the report file to local like `scp -r -i Pickachu.pem ec2-user@ec2-52-24-165-2.us-west-2.compute.amazonaws.com:/home/ec2-user/.tsung/log/20151120-1002 ./Pickachu/load_tests/results/`
+4. Download the report file to local like `scp -r -i Pickachu.pem ec2-user@ec2-52-24-165-2.us-west-2.compute.amazonaws.com:/home/ec2-user/.tsung/log/20151120-1040 ./Pickachu/load_tests/results/`
 
 =================================
 ### Load testing report
