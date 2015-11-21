@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem "font-awesome-rails"
+#font-awesome
 
 gem 'gmaps4rails'
 # google map for rails
