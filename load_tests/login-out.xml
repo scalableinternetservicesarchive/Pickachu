@@ -9,22 +9,18 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-230-24.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-11-58-65.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
-
 
   <load>
     <arrivalphase phase="1" duration="30" unit="second">
-      <users arrivalrate="5" unit="second"></users>
+      <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="30" unit="second">
-      <users arrivalrate="10" unit="second"></users>
+      <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="3" duration="30" unit="second">
-      <users arrivalrate="20" unit="second"></users>
-    </arrivalphase>
-    <arrivalphase phase="4" duration="30" unit="second">
-      <users arrivalrate="40" unit="second"></users>
+      <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -39,30 +35,12 @@
 
   <sessions>
     <session name="http-test" probability="100" type="ts_http">
-
-      <!-- start out home page. home#index -->
-      <request>
-        <http url='/' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 0.5 seconds, user is decide to go to map to see nearby  -->
-      <thinktime value="0.5" random="true"></thinktime>
-
-      <!-- visit the nearby map -->
-      <request>
-        <http url='/nearbies' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 15 seconds, user want to buy something so login -->
-      <thinktime value="1" random="true"></thinktime>
-
-      <!-- go to sign up page: users#new -->
-      <setdynvars sourcetype="random_number" start="12" end="150">
+      <!-- go to sign in page: users#new -->
+      <setdynvars sourcetype="random_number" start="1" end="150">
         <var name="random_user_num"/>
       </setdynvars>
 
       <request>
-        <dyn_variable name="authenticity_token"/>
         <http url="/users/sign_in" version="1.1" method="GET"/>
       </request>
 
@@ -75,28 +53,11 @@
         <http
           url="/users/sign_in"
           version="1.1"
-          contents="utf8=%E2%9C%93&amp;user%5Bemail%5D=test@gmail.com&amp;session%5Bpassword%5D=12345678&amp;"
+          contents='utf8=%E2%9C%93&amp;user%5Bemail=test@gmail.com&amp;user%5Bpassword=12345678&amp;commit=Log+in'
           content_type="application/x-www-form-urlencoded"
           method="POST">
         </http>
       </request>
-
-      <!-- many user login? -->
-<!--       <request subst="true">
-        <http
-          url="/users/sign_in"
-          version="1.1"
-          contents="utf8=%E2%9C%93&amp;
-          authenticity_token=%%_authenticity_token%%&amp;
-          session%5Bname%5D=user%%_random_user_num%%&amp;
-          user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;
-          session%5Bpassword%5D=111111&amp;
-          randon_email_name%%&amp;
-          commit=Login"
-          content_type="application/x-www-form-urlencoded"
-          method="POST">
-        </http>
-      </request> -->
 
       <!-- after login, user should redirect to pickups page-->
       <!-- wait 2 sec, user decide to take a look pick list -->
@@ -104,18 +65,6 @@
       <request>
         <http url='/pickups' version='1.1' method='GET'></http>
       </request>
-
-      <!-- user decide to create a new pickup (not write yet) -->
-      <request subst="true">
-        <http
-          url="pickups/new"
-          version="1.1"
-          contents="utf8=%E2%9C%93&amp;user_id=1&amp;name=iPhone&amp;lng=-118.3&amp;lat=33.98&amp;price=199.99&amp;description=Legit%5BiPhone&amp;"
-          content_type="application/x-www-form-urlencoded"
-          method="POST">
-        </http>
-      </request>
-
 
       <!-- wait for up to 5 seconds, user want to browse maps again -->
       <thinktime value="5" random="true"></thinktime>

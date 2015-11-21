@@ -19,6 +19,7 @@ u.save!;
 u = User.create!(name: 'test',email: 'test@gmail.com', password: '12345678', created_at: '10/10/2015 17:00', updated_at: '10/10/2015 17:00');
 u.save!;
 
+
 Pickup.delete_all;
 
 Pickup.create([user_id: '1',  name: 'iPhone', lng: '-118.3', lat: '33.98', price:'99.99', description: 'Legit iPhone 10000']);
