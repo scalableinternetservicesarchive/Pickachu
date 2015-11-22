@@ -18,8 +18,8 @@ class PickupsController < ApplicationController
   def index
       @pickup = Pickup.new
       @users = User.all
-      puts("index");
-      puts(@users);
+      #puts("index");
+      #puts(@users);
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
       elsif params[:search_area]

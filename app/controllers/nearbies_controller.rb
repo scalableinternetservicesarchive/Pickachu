@@ -55,7 +55,7 @@ class NearbiesController < ApplicationController
 
     end
     @pickups.each do |pickup|
-      puts(pickup)
+      #puts(pickup)
     end
   end
 
