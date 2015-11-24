@@ -51,11 +51,11 @@
       <!-- one user -->
       <request subst="true">
         <http
-          url="/users/sign_in"
-          version="1.1"
-          contents='utf8=%E2%9C%93&amp;user%5Bemail=test@gmail.com&amp;user%5Bpassword=12345678&amp;commit=Log+in'
-          content_type="application/x-www-form-urlencoded"
-          method="POST">
+          url='/users/sign_in'
+          version='1.1'
+          contents='user%5Bemail%5D=test@gmail.com&amp;user%5Bpassword%5D=12345678'
+          content_type='application/x-www-form-urlencoded'
+          method='POST'>
         </http>
       </request>
 
@@ -87,14 +87,20 @@
         <http url='/pickups' version='1.1' method='GET'></http>
       </request>
 
+
       <!-- user decide to create a new pickup (not write yet) -->
       <request subst="true">
         <http
           url='/pickups'
           version='1.1'
-          contents='utf8=%E2%9C%93&amp;pickup%5Buser%5Bid=1&amp;pickup%5Bname=FromLoadTest&amp;cur%5Blong=-118.3&amp;cur%5Blat=33.98&amp;pickup%5Bobj%5Btype=1&amp;pickup%5Bprice=199.99&amp;pickup%5Bstart%5Btime%5B1i=2015&amp;pickup%5Bstart%5Btime%5B2i=November&amp;pickup%5Bstart%5Btime%5B3i=21&amp;pickup%5Bend%5Btime%5B1i=2015&amp;pickup%5Bend%5Btime%5B2i=December&amp;pickup%5Bend%5Btime%5B3i=25&amp;pickup%5Bdescription=Legit%5BiPhone&amp;button=submit'
-          content_type="application/x-www-form-urlencoded" 
-          method="POST">
+          contents='
+          pickup%5Buser_id%5D=6&amp;
+          pickup%5Bname%5D=FromLoadTest&amp;
+          cur%5Blng%5D=-118.3&amp;
+          cur%5Blat%5D=33.98&amp;
+          pickup%5Bdescription%5D=LOL'
+          content_type='application/x-www-form-urlencoded'
+          method='POST'>
         </http>
       </request>
 
