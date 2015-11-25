@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-27-174-245.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-11-221-233.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -76,7 +76,7 @@
       <!-- wait for up to 5 seconds, user rate nick's pickup 8 -->
       <thinktime value="3" random="true"></thinktime>
       <request>
-        <http url="/users/comment?utf8=✓&amp;rep=5&amp;comment=mmm&amp;search=Nick&amp;username=Nick&amp;pickupid=8&amp;beginrate=Rate" version="1.1" method="GET"/>
+        <http url="/users/comment?rep=5&amp;comment=mmm&amp;search=Nick&amp;username=Nick&amp;pickupid=8&amp;beginrate=Rate" version="1.1" method="GET"/>
       </request>
 
     
