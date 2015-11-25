@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-74-92.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-27-174-245.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -61,21 +61,25 @@
 
       <thinktime value="2" random="true"></thinktime>
 
+
+      <!-- Go to comments page-->
       <request>
-        <http url="/comment" version="1.1" method="GET"/>
+        <http url="/users/comment" version="1.1" method="GET"/>
       </request>
 
-      <thinktime value="5" random="true"></thinktime>
-      <request subst="true">
-        <http
-          url="/comment"
-          version="1.1"
-          contents='utf8=%E2%9C%93&amp;rep=5&amp;comment=sa&amp;search=Nick&amp;pickupid=4&amp;beginrate=Rate'
-          content_type="application/x-www-form-urlencoded"
-          method="POST">
-        </http>
+      <!-- wait for up to 3 seconds, user search nick-->
+      <thinktime value="3" random="true"></thinktime>
+      <request>
+        <http url="/users/comment/?search=nick" version="1.1" method="GET"/>
       </request>
 
+      <!-- wait for up to 5 seconds, user rate nick's pickup 8 -->
+      <thinktime value="3" random="true"></thinktime>
+      <request>
+        <http url="/users/comment?utf8=✓&amp;rep=5&amp;comment=mmm&amp;search=Nick&amp;username=Nick&amp;pickupid=8&amp;beginrate=Rate" version="1.1" method="GET"/>
+      </request>
+
+    
     <thinktime value="2" random="true"></thinktime>
 
     <request>

@@ -20,19 +20,22 @@ class UsersController < ApplicationController
     end
     if params[:username]
       @singlePickup= Pickup.find_by_id(params[:pickupid])
-      if @singlePickup.rate==0
-        @user = User.find_by_name(params[:username])
-        oldNum = @user.number_of_trades
-        if @user.reputation!=nil
-          newSum = oldNum * @user.reputation + params[:rep].to_f
-        else
-          newSum = params[:rep].to_f
+      if params[:rep].present?
+        localRep = params[:rep].to_f
+        if @singlePickup.rate==0 and params[:comment].present? and localRep>0 and localRep<=5 
+          @user = User.find_by_name(params[:username])
+          oldNum = @user.number_of_trades
+          if @user.reputation!=nil
+            newSum = oldNum * @user.reputation + localRep
+          else
+            newSum = localRep
+          end
+          @user.update(number_of_trades: (oldNum+1))
+          @user.update(reputation: newSum/(oldNum+1))
+          @singlePickup.update(rate: localRep)
+          @singlePickup.update(comment: params[:comment])
+          @latestPickup = @singlePickup
         end
-        @user.update(number_of_trades: (oldNum+1))
-        @user.update(reputation: newSum/(oldNum+1))
-        @singlePickup.update(rate: params[:rep].to_f)
-        @singlePickup.update(comment: params[:comment])
-        @latestPickup = @singlePickup
       end
     end
   end
