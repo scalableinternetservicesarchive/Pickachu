@@ -33,15 +33,21 @@
       <setdynvars sourcetype="random_number" start="1" end="1000">
         <var name="random_user_num"/>
         <var name="random_pickup_num"/>
+        <var name="random_price"/>
       </setdynvars>
 
       <setdynvars sourcetype="random_number" start="0" end="50">
         <var name="random_lat"/>
       </setdynvars>
 
-      <setdynvars sourcetype="random_number" start="0" end="180">
+      <setdynvars sourcetype="random_number" start="0" end="100">
         <var name="random_lng"/>
       </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="1" end="4">
+        <var name="random_obj_type"/>
+      </setdynvars>
+
 
       <request>
         <dyn_variable name="authenticity_token" ></dyn_variable>
@@ -79,42 +85,13 @@
         <http
           url='/pickups'
           version='1.1'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser_id%5D=7&amp;pickup%5Bname%5D=LoadTestRandom%%_random_user_num%%&amp;pickup%5Blng%5D=%%_random_lng%%&amp;pickup%5Blat%5D=%%_random_lat%%&amp;pickup%5Bdescription%5D=LOL%%_random_pickup_num%%'
-          content_type='application/x-www-form-urlencoded'
-          method='POST'>
-        </http>
-      </request>
-
-      <request subst="true">
-        <http
-          url='/pickups'
-          version='1.1'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser_id%5D=7&amp;pickup%5Bname%5D=LoadTestRandom%%_random_user_num%%&amp;pickup%5Blng%5D=-%%_random_lng%%&amp;pickup%5Blat%5D=-%%_random_lat%%&amp;pickup%5Bdescription%5D=LOL%%_random_pickup_num%%'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser_id%5D=7&amp;pickup%5Bname%5D=LoadTestRandom%%_random_user_num%%&amp;pickup%5Blng%5D=%%_random_lng%%&amp;pickup%5Blat%5D=%%_random_lat%%&amp;pickup%5Bdescription%5D=LOL%%_random_pickup_num%%&amp;pickup%5Bobj_type%5D=%%_random_obj_type%%&amp;pickup%5Bprice%5D=%%_random_price%%&amp;'
           content_type='application/x-www-form-urlencoded'
           method='POST'>
         </http>
       </request>
 
 
-      <request subst="true">
-        <http
-          url='/pickups'
-          version='1.1'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser_id%5D=7&amp;pickup%5Bname%5D=LoadTestRandom%%_random_user_num%%&amp;pickup%5Blng%5D=%%_random_lng%%&amp;pickup%5Blat%5D=-%%_random_lat%%&amp;pickup%5Bdescription%5D=LOL%%_random_pickup_num%%'
-          content_type='application/x-www-form-urlencoded'
-          method='POST'>
-        </http>
-      </request>
-
-      <request subst="true">
-        <http
-          url='/pickups'
-          version='1.1'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;pickup%5Buser_id%5D=7&amp;pickup%5Bname%5D=LoadTestRandom%%_random_user_num%%&amp;pickup%5Blng%5D=-%%_random_lng%%&amp;pickup%5Blat%5D=%%_random_lat%%&amp;pickup%5Bdescription%5D=LOL%%_random_pickup_num%%'
-          content_type='application/x-www-form-urlencoded'
-          method='POST'>
-        </http>
-      </request>
       <!-- <thinktime value="2" random="true"></thinktime> -->
 
       <request>
