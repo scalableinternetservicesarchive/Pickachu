@@ -118,3 +118,20 @@ body { height: 100%; margin: 0; padding: 0 }
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+
+@media (min-width: 768px) {
+  .container {
+    width: 90% !important;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 90% !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 90% !important;
+  }
+}

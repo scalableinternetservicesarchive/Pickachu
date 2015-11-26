@@ -2,7 +2,8 @@
  -->
 <div class="container">
 
-  <h1> Pickup Info Page </h1>
+  <h1> <%= @pickup.name %> </h1>
+  <p> <%= @pickup.description %> </p>
   <hr>
 
   <div class="row">
@@ -14,7 +15,7 @@
 
           <div class="caption">
             <h3><%= @pickup.name %></h3>
-            <h4> $<%= @pickup.price %> </h4>
+            <h4> $<%= @pickup.price.round(2) %> </h4>
             <h4> Seller: <%= @pickup.user_id %> </h4>
             <p><%= @pickup.description %></p>
           <% if @pickup.pickedup == false %>
@@ -44,8 +45,7 @@ function displayOnMap(position){
   handler.map.centerOn(marker);
 
   google.maps.event.trigger(marker.getServiceObject(), 'click');
-  // console.log(marker);
-  // marker.infowindow.open(handler.getMap(), marker);
+
 };
 
 var mapStyle = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#2c3e50"},{"visibility":"on"}]}];
@@ -70,82 +70,8 @@ handler.buildMap({
           }
 
 });
-
- // var marker = null;
- // google.maps.event.addListener(
- //  handler.getMap(), 'click', function(object){ 
- //    marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});
- //    handler.addMarkers(marker);
- //    }
- //  );
-
-// function gmaps4rails_callback() {
-//    var marker = null;
-//    google.maps.event.addListener(
-//     Gmaps.map, 'click', function(object){ 
-//       alert('Clicked');
-//       marker = new google.maps.Marker({position: object.latLng, map: Gmaps4Rails.map})
-//       handler.addMarkers(marker);
-//       }
-//     );
-// }
-
-
     
 </script>
 
-<!-- <h1> <%= @pickup.name %> </h1>
-
-<p>
-  <strong>Seller:</strong>
-  <%= getUserName(@pickup.user_id) %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @pickup.name %>
-</p>
-
-<p>
-  <strong>Long:</strong>
-  <%= @pickup.lng.round(2) %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @pickup.lat.round(2) %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @pickup.obj_type %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @pickup.image_url %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @pickup.price %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @pickup.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @pickup.end_time %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @pickup.description %>
-</p> -->
 </div>
-<!--
-<%= link_to 'Edit', edit_pickup_path(@pickup) %> |
-<%= link_to 'Back', pickups_path %> -->
+

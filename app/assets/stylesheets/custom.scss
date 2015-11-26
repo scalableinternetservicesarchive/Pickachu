@@ -12,8 +12,8 @@ body {
     height: 100%;
 }
 
-body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+h1, h2, h3, h4, p, body {
+    font-family: "Roboto", Helvetica,Arial,sans-serif !important;
 }
 
 .text-vertical-center {
@@ -369,7 +369,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .thumbnail {
-    height: 600px !important;
+    height: 450px !important;
 }
 
 .thumbnail-pic {
