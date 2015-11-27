@@ -26,6 +26,10 @@ end
 
 Pickup.delete_all;
 
+# 1.upto(1000) do |i|
+# 	pickup = Pickup.create(user_id: '2',  name: 'pickup#{i}', lng: '-118.#{i}', lat: '33.#{i}', obj_type:'1', price:'#{i}.55', description: 'Legit pickup #{i}');
+# end
+
 Pickup.create([user_id: '1',  name: 'iPhone', lng: '-118.3', lat: '33.98', obj_type:'1', price:'99.99', description: 'Legit iPhone 10000']);
 Pickup.create([user_id: '1',  name: 'Halo', lng: '-118.4', lat: '34.05', obj_type:'2', price:'88.99', description:'Legendary Game Halo']);
 Pickup.create([user_id: '2',  name: 'Xbox', lng: '-118.4', lat: '34.06', obj_type:'3', price:'199.99', description:'Brand New XBOX TWO']);

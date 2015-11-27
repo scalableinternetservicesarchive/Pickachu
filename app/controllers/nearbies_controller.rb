@@ -14,10 +14,7 @@ class NearbiesController < ApplicationController
 
   def index
 
-    puts('Printing stuff!');
-    Rails.logger.debug('longitude: ' + params[:lng].to_s)
-    Rails.logger.debug('latitude: ' + params[:lat].to_s)
-    @pickups = Pickup.search_area(10.to_f, params[:lng].to_f, params[:lat].to_f)
+    @pickups = Pickup.order("updated_at DESC").take(15)
 
     #show different template for different pickup
     @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
