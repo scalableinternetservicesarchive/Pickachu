@@ -35,7 +35,8 @@ class PickupsController < ApplicationController
       elsif params[:search_type]
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
-        @pickups = Pickup.order("updated_at DESC").take(15)
+        # @pickups = Pickup.order("updated_at DESC").take(15)
+        @pickups = Pickup.all
         #@pickups = Pickup.order("created_at DESC")
       end
 

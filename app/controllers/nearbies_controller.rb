@@ -14,7 +14,8 @@ class NearbiesController < ApplicationController
 
   def index
 
-    @pickups = Pickup.order("updated_at DESC").take(15)
+    # @pickups = Pickup.order("updated_at DESC").take(15)
+    @pickups = Pickup.all
 
     #show different template for different pickup
     @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
