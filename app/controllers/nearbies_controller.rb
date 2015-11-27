@@ -1,4 +1,6 @@
 class NearbiesController < ApplicationController
+  #cache configuration
+  caches_action :index
 
   # GET /nearbies
   # GET /nearbies.json

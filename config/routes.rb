@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   # get 'about' => "home#about"
 
-  get 'pickachu' => "home#pickachu"
 
   get 'index' => "home#index"
 
