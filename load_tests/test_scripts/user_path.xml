@@ -13,7 +13,7 @@
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="10" unit="second">
+    <arrivalphase phase="1" duration="1" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
   </load>
@@ -25,6 +25,9 @@
     <option type="ts_http" name="user_agent">
       <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
     </option>
+
+    <!-- for description search -->
+    <option name="file_server" id='userdb' value="./test_data/text_search_words.csv"/>
   </options>
 
   <sessions>
@@ -36,18 +39,47 @@
         <var name="random_price"/>
       </setdynvars>
 
+      <!-- for every random variable -->
       <setdynvars sourcetype="random_number" start="0" end="50">
         <var name="random_lat"/>
       </setdynvars>
-
       <setdynvars sourcetype="random_number" start="0" end="100">
         <var name="random_lng"/>
       </setdynvars>
-
       <setdynvars sourcetype="random_number" start="1" end="4">
         <var name="random_obj_type"/>
       </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="10">
+        <var name="random_type"/>
+      </setdynvars>
+      <setdynvars sourcetype="random_number" start="1" end="1000">
+        <var name="random_miles"/>
+      </setdynvars>
+      <!-- above is for every random variable -->
 
+      <!-- wait for up to 0.5 seconds, user is decide to go to map to see nearby  -->
+      <thinktime value="0.5" random="true"></thinktime>
+
+      <!-- visit the nearby map first to check it out before login-->
+      <request>
+        <http url='/nearbies' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 15 seconds, user want to buy something so login -->
+      <thinktime value="15" random="true"></thinktime>
+
+      <!-- go to sign up page: users#new -->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="random_user_num"/>
+      </setdynvars>
+
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/users/sign_in" version="1.1" method="GET"/>
+      </request>
+
+      <!-- wait for up to 3 seconds, user is fill in new user-->
+      <thinktime value="3" random="true"></thinktime>
 
       <request>
         <dyn_variable name="authenticity_token" ></dyn_variable>
@@ -57,8 +89,6 @@
       <!-- wait for up to 3 seconds, user is fill in new user-->
       <thinktime value="2" random="true"></thinktime>
 
-
-      <!-- user login (not test yet)-->
       <!-- one user -->
       <if var="authenticity_token" neq="">
       <request subst="true">
@@ -71,14 +101,20 @@
         </http>
       </request>
 
+      <!-- wait for up to 1 seconds, user want to see his dashboard -->
+      <thinktime value="1" random="true"></thinktime>
+      <request>
+        <http url='/dashboard' version='1.1' method='GET'></http>
+      </request>
 
-      <!-- after login, user should redirect to pickups page-->
-      <!-- wait 2 sec, user decide to take a look pick list -->
-      <thinktime value="2" random="true"></thinktime>
+      <!-- wait 4 sec for dashboard, user decide to take a look pick list -->
+      <thinktime value="4" random="true"></thinktime>
       <request>
         <http url='/pickups' version='1.1' method='GET'></http>
       </request>
 
+      <!-- check 5 seconds and decide to sell something -->
+      <thinktime value="5" random="true"></thinktime>
 
       <!-- user decide to create a new pickup (not write yet) -->
       <request subst="true">
@@ -91,9 +127,34 @@
         </http>
       </request>
 
+      
+      <thinktime value="2" random="true"></thinktime>
+      
+      <!-- user want to check specific type -->
+      <request subst="true">
+        <http url='/pickups?utf8=%E2%9C%93&amp;search_type=%%_random_miles%%' version='1.1' method='GET'></http>
+      </request>
+      <thinktime value="3" random="true"></thinktime>
+      
+      <!-- user want to search in certain range -->
+      <request subst="true">
+        <http url='/pickups?utf8=%E2%9C%93&amp;search_area=%%_random_miles%%&amp;lng%5B%5D=-118.4488049&amp;lat%5B%5D=34.061287199999995' version='1.1' method='GET'></http>
+      </request>
+      <thinktime value="3" random="true"></thinktime>
 
-      <!-- <thinktime value="2" random="true"></thinktime> -->
+      <!-- search for certain keyword -->
+      <request subst="true">
+        <http url='/pickups?utf8=%E2%9C%93&amp;search_des=%%_search_key%%' version='1.1' method='GET'></http>
+      </request>
+      <thinktime value="4" random="true"></thinktime>
 
+      <!-- user want to browse maps before leaving for up to 5 seconds-->
+      <request>
+        <http url='/nearbies' version='1.1' method='GET'></http>
+      </request>
+      <thinktime value="5" random="true"></thinktime>
+
+      <!-- logout before leaving -->
       <request>
         <http url='/users/sign_out' version='1.1' method='DELETE'></http>
       </request>

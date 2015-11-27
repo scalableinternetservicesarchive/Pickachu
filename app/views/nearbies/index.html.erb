@@ -1,16 +1,5 @@
-<!-- <p id="notice"><%= notice %></p>
- -->
+
 <h1 class="nearby-title">Nearby goods</h1>
-
-
-
-<!--   <div id="map_canvas"></div>
-  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBqGHXqWZ2hO2atUBSMRZluvbz0UHCMCv4' %>
-  <%= javascript_include_tag 'google_map' %>
-  <%= javascript_tag do %>
-  google.maps.event.addDomListener(window, 'load', initialize);
-  <% end %>
-     -->
 
  <div id="multi_markers" class="nearby-map"></div>
 
@@ -28,8 +17,7 @@ function displayOnMap(position){
   handler.map.centerOn(marker);
 
   google.maps.event.trigger(marker.getServiceObject(), 'click');
-  // console.log(marker);
-  // marker.infowindow.open(handler.getMap(), marker);
+
 };
 
 
@@ -51,28 +39,6 @@ handler.buildMap({
         navigator.geolocation.getCurrentPosition(displayOnMap);
 });
 
- // var marker = null;
- // google.maps.event.addListener(
- //  handler.getMap(), 'click', function(object){ 
- //    marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});
- //    handler.addMarkers(marker);
- //    }
- //  );
-
-// function gmaps4rails_callback() {
-//    var marker = null;
-//    google.maps.event.addListener(
-//     Gmaps.map, 'click', function(object){ 
-//       alert('Clicked');
-//       marker = new google.maps.Marker({position: object.latLng, map: Gmaps4Rails.map})
-//       handler.addMarkers(marker);
-//       }
-//     );
-// }
-
 
     
 </script>
-
-<!-- <%= link_to 'New Nearby', new_nearby_path %>
- -->
