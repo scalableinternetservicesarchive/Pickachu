@@ -1,5 +1,4 @@
 class NearbiesController < ApplicationController
-  before_action :set_nearby, only: [:show, :edit, :update, :destroy]
 
   # GET /nearbies
   # GET /nearbies.json
@@ -15,60 +14,51 @@ class NearbiesController < ApplicationController
 
   def index
 
-    @pickups = Pickup.all
+    puts('Printing stuff!');
+    Rails.logger.debug('longitude: ' + params[:lng].to_s)
+    Rails.logger.debug('latitude: ' + params[:lat].to_s)
+    @pickups = Pickup.search_area(10.to_f, params[:lng].to_f, params[:lat].to_f)
+
+    #show different template for different pickup
     @hash = Gmaps4rails.build_markers(@pickups) do |pickup, marker|
-    if (pickup.pickedup == false)
-      marker.lat pickup.lat
-      marker.lng pickup.lng
-      marker.title pickup.name
-      marker.infowindow '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + pickup.name + '</h1>'+
-      '<div id="bodyContent">'+
-      '<img src="' + pickup.avatar.url + '" class="pickup-img">' +
-      '<h3> $' + pickup.price.to_s + '</h3>' +
-      '<h3> Seller: ' + getUserName(pickup.user_id) + '</h3>' +
-      '<p>' + pickup.description + '</p>' +
-      '<p> <a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> PICK IT UP! </a>' +
-      '<a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> MORE INFO </a> </p>' +
-      '</div>'+
-      '</div>';
-    elsif (pickup.pickedup == true)
-      marker.lat pickup.lat
-      marker.lng pickup.lng
-      marker.title pickup.name
-      marker.infowindow '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + pickup.name + '</h1>'+
-      '<div id="bodyContent">'+
-      '<img src="' + pickup.avatar.url + '" class="pickup-img">' +
-      '<h3> $' + pickup.price.to_s + '</h3>' +
-      '<h3> Seller: ' + getUserName(pickup.user_id) + '</h3>' +
-      '<p>' + pickup.description + '</p>' +
-      '<p> <a class="btn btn-default disabled"> Picked </a>' +
-      '<a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> MORE INFO </a> </p>' +
-      '</div>'+
-      '</div>';
-    end
+      if (pickup.pickedup == false)
+        marker.lat pickup.lat
+        marker.lng pickup.lng
+        marker.title pickup.name
+        marker.infowindow '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">' + pickup.name + '</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="' + pickup.avatar.url + '" class="pickup-img">' +
+        '<h3> $' + pickup.price.to_s + '</h3>' +
+        '<h3> Seller: ' + getUserName(pickup.user_id) + '</h3>' +
+        '<p>' + pickup.description + '</p>' +
+        '<p> <a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> PICK IT UP! </a>' +
+        '<a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> MORE INFO </a> </p>' +
+        '</div>'+
+        '</div>';
+      elsif (pickup.pickedup == true)
+        marker.lat pickup.lat
+        marker.lng pickup.lng
+        marker.title pickup.name
+        marker.infowindow '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">' + pickup.name + '</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="' + pickup.avatar.url + '" class="pickup-img">' +
+        '<h3> $' + pickup.price.to_s + '</h3>' +
+        '<h3> Seller: ' + getUserName(pickup.user_id) + '</h3>' +
+        '<p>' + pickup.description + '</p>' +
+        '<p> <a class="btn btn-default disabled"> Picked </a>' +
+        '<a class="btn btn-primary" href="/pickups/' + pickup.id.to_s + '"> MORE INFO </a> </p>' +
+        '</div>'+
+        '</div>';
+      end
 
     end
-    @pickups.each do |pickup|
-      #puts(pickup)
-    end
+
   end
 
-
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_nearby
-      @pickup = Pickup.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def nearby_params
-      params[:nearby]
-    end
 end

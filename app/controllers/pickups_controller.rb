@@ -18,12 +18,20 @@ class PickupsController < ApplicationController
   def index
       @pickup = Pickup.new
       @users = User.all
-      #puts("index");
-      #puts(@users);
+      @alert = ''
+
       if params[:search_des]
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
       elsif params[:search_area]
-        @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
+        @alert = ''
+        if (params[:lng][0] != '' && params[:lat][0] != '')
+          @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
+        else
+          puts('Parameter not available')
+          @pickups = Pickup.order("updated_at DESC").take(15)
+          @alert = 'We do not know your position yet! So we cannot search within area!'
+          flash.now[:alert] = @alert
+        end
       elsif params[:search_type]
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
@@ -49,11 +57,6 @@ class PickupsController < ApplicationController
       marker.infowindow pickup.description
 
       end
-  end
-
-  # GET /pickups/new
-  def new
-    @pickup = Pickup.new
   end
 
   # GET /pickups/1/edit

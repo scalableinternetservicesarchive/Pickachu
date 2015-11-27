@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :nearbies
   devise_for :users
-  devise_for :models
 
 
   resources :pickups
@@ -33,6 +31,8 @@ Rails.application.routes.draw do
   get 'users/comment' => "users#comment", as: 'users_search'
 
   get 'dashboard' => 'users#dashboard'
+
+  get 'nearbies' => 'nearbies#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

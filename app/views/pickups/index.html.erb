@@ -1,5 +1,8 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
+<% if @alert != '' %>
+  <div class="alert alert-danger" id="alert" role="alert"> <%= alert %> </div>
+<% end %>
 
 <h1>Browse Pickups</h1>
 
