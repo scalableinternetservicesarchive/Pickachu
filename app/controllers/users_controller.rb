@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @singlePickup= Pickup.find_by_id(params[:pickupid])
       if params[:rep].present?
         localRep = params[:rep].to_f
-        if @singlePickup.rate==0 and params[:comment].present? and localRep>0 and localRep<=5 
+        if @singlePickup.rate.present? and params[:comment].present? and localRep>0 and localRep<=5 
           @user = User.find_by_name(params[:username])
           oldNum = @user.number_of_trades
           if @user.reputation!=nil

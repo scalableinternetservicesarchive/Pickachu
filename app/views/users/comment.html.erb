@@ -50,7 +50,7 @@
           <td><h4><%= pickup.id %></h4></td>
           <td><h4><%= pickup.name %></h4></td>
           <td><%= image_tag pickup.avatar.url(:thumb), :class => "thumbnail-pic" %></td>
-          <% if pickup.rate == 0 %>
+          <% if pickup.rate.present? %>
           <td>
             <%= form_tag users_search_path, :method => "get" do %>
             <%= select_tag(:rep,options_for_select([['1',1],['2',2],['3',3],['4',4],['5',5]], 5)) %>
