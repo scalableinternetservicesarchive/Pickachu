@@ -43,8 +43,8 @@ class PickupsController < ApplicationController
         expire_cache_for_pickup_index
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
-        # @pickups = Pickup.order("updated_at DESC").take(15)
-        @pickups = Pickup.all
+        @pickups = Pickup.order("updated_at DESC").take(15)
+        #@pickups = Pickup.all
         #@pickups = Pickup.order("created_at DESC")
       end
 
