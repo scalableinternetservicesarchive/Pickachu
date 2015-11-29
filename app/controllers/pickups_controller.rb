@@ -18,9 +18,10 @@ class PickupsController < ApplicationController
   end
 
   def index
-      # @pickup = Pickup.new
+      @pickup = Pickup.new
       @users = User.all
       @alert = ''
+
       expire_cache_for_pickup_index
 
       if params[:search_des]
