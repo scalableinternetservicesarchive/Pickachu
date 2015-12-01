@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'rails-observers'
+#cache sweeper
+
 gem 'actionpack-action_caching'
 #cache action
 

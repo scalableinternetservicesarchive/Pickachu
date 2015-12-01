@@ -1,7 +1,7 @@
 class NearbiesController < ApplicationController
   #cache configuration
   caches_action :index
-
+#   cache_sweeper :pickup_sweeper, :only => [ :index ]
   # GET /nearbies
   # GET /nearbies.json
 

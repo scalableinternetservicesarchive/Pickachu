@@ -80,8 +80,9 @@ class PickupsController < ApplicationController
   def pickup
     @pickup = Pickup.find(params[:id])
     puts('picking it up')
-    @pickup.update_attribute(:pickedup, 'true');
-    # expire_action action:[:index,:show]
+    @pickup.update_attribute(:pickedup, 'true')
+    # expire_action action:[:index,:show
+    expire_nearby_action
     redirect_to(:back)
   end
 
@@ -100,6 +101,8 @@ class PickupsController < ApplicationController
       end
     end
 
+    expire_nearby_action
+
     # expire_action action:[:index,:show]
   end
 
@@ -114,6 +117,8 @@ class PickupsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @pickup.errors, status: :unprocessable_entity }
       end
+
+      expire_nearby_action
     end
 
     # expire_action action:[:index,:show]
@@ -127,11 +132,12 @@ class PickupsController < ApplicationController
       format.html { redirect_to pickups_url, notice: 'Pickup was successfully destroyed.' }
       format.json { head :no_content }
     end
-
+    expire_nearby_action
     # expire_action action:[:index,:show]
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_pickup
       @pickup = Pickup.find(params[:id])
@@ -149,5 +155,9 @@ class PickupsController < ApplicationController
       puts 'Removing cache!'
       cache_key = "views/#{request.host_with_port}/pickups"
       Rails.cache.delete(cache_key)
+    end
+
+    def expire_nearby_action
+      expire_action(:controller => 'nearbies', :action => 'index')
     end
 end
