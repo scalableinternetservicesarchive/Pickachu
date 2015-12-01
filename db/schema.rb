@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127035445) do
+ActiveRecord::Schema.define(version: 20151130234129) do
 
   create_table "models", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20151127035445) do
   end
 
   add_index "pickups", ["user_id"], name: "fk_rails_fcea262d4c", using: :btree
+
+  create_table "seed_mutexes", force: :cascade do |t|
+    t.boolean  "status",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "seed_mutexes", ["status"], name: "index_seed_mutexes_on_status", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255
