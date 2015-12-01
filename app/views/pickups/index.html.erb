@@ -92,7 +92,7 @@ Create your PickUp!
 
 
     <% @pickups.each do |pickup| %>
-
+      <% cache pickup do %>
       <div class="col-sm-4 col-md-3">
         <div class="thumbnail">
 
@@ -107,6 +107,7 @@ Create your PickUp!
           </div>
         </div>
       </div>
+      <% end %>
       <% end %>
 
 <br>

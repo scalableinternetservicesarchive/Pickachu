@@ -1,4 +1,5 @@
 class Pickup < ActiveRecord::Base
+  # touch: true
   has_attached_file :avatar, styles: {
     tiny: "48x48#",
     medium: "300x300#",

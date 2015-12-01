@@ -3,7 +3,7 @@ class PickupsController < ApplicationController
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
   #caches configuration
-  caches_action :index, :show
+  # caches_action :index, :show
 
   #search for user name
   def getUserName(id)
@@ -22,14 +22,15 @@ class PickupsController < ApplicationController
       @users = User.all
       @alert = ''
 
-      expire_cache_for_pickup_index
+      # expire_cache_for_pickup_index
 
       if params[:search_des]
-        expire_cache_for_pickup_index
+        # puts('trying to remove cache')
+        # expire_cache_for_pickup_index
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
 
       elsif params[:search_area]
-        expire_cache_for_pickup_index
+        # expire_cache_for_pickup_index
         @alert = ''
         if (params[:lng][0] != '' && params[:lat][0] != '')
           @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
@@ -40,7 +41,7 @@ class PickupsController < ApplicationController
           flash.now[:alert] = @alert
         end
       elsif params[:search_type]
-        expire_cache_for_pickup_index
+        # expire_cache_for_pickup_index
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
         @pickups = Pickup.order("updated_at DESC").take(15)
@@ -60,7 +61,8 @@ class PickupsController < ApplicationController
   # GET /pickups/1.json
   def show
       #not modified not showing up
-      fresh_when :last_modified => @pickup.published_at.utc, :etag => @pickup
+      # fresh_when :last_modified => @pickup.published_at.utc, :etag => @pickup
+      @pickup = Pickup.find(params[:id])
       @hash = Gmaps4rails.build_markers(@pickup) do |pickup, marker|
       marker.lat pickup.lat
       marker.lng pickup.lng
@@ -77,8 +79,9 @@ class PickupsController < ApplicationController
   # PUT /pickups/pickup/1
   def pickup
     @pickup = Pickup.find(params[:id])
+    puts('picking it up')
     @pickup.update_attribute(:pickedup, 'true');
-    expire_action action:[:index,:show]
+    # expire_action action:[:index,:show]
     redirect_to(:back)
   end
 
@@ -97,7 +100,7 @@ class PickupsController < ApplicationController
       end
     end
 
-    expire_action action:[:index,:show]
+    # expire_action action:[:index,:show]
   end
 
   # PATCH/PUT /pickups/1
@@ -113,7 +116,7 @@ class PickupsController < ApplicationController
       end
     end
 
-    expire_action action:[:index,:show]
+    # expire_action action:[:index,:show]
   end
 
   # DELETE /pickups/1
@@ -125,7 +128,7 @@ class PickupsController < ApplicationController
       format.json { head :no_content }
     end
 
-    expire_action action:[:index,:show]
+    # expire_action action:[:index,:show]
   end
 
   private
