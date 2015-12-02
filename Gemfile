@@ -53,6 +53,7 @@ gem 'autoprefixer-rails'
 gem "devise-encryptable"
 gem "paperclip", "~> 4.3"
 gem 'aws-sdk-v1'
+gem 'fog'
 
 group :production do
   gem 'rails_12factor'
