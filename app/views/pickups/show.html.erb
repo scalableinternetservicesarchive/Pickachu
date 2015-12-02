@@ -1,7 +1,7 @@
 <!-- <p id="notice"><%= notice %></p>
  -->
 <div class="container">
-
+<% cache @pickup do %>
   <h1> <%= @pickup.name %> </h1>
   <p> <%= @pickup.description %> </p>
   <hr>
@@ -33,6 +33,7 @@
       </div>
   </div>
 
+<% end %>
 <script> 
 
 //get geolocation first

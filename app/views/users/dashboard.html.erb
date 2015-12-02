@@ -8,7 +8,7 @@
 			<th>id</th>
     </tr>
   </thead>
-
+  <% cache current_user do %>
   <tbody>
   	<% if current_user %>
       <td><%= current_user.name %></td>
@@ -16,6 +16,7 @@
 			<td><%= current_user.id %></td>
     <% end %>
   </tbody>
+  <% end %>
 </table>
 
 <table class="table">
@@ -31,7 +32,8 @@
   <tbody>
 		<% @pickups = Pickup.all %>
     <% @pickups.each do |pickup| %>
-        <% if current_user and pickup.user_id == current_user.id %>
+    <% cache pickup do%>
+        <% if current_user.id and pickup.user_id == current_user.id %>
           <tr>
             <td><%= pickup.user_id %></td>
             <td><%= pickup.name %></td>
@@ -40,6 +42,7 @@
               <%= pickup.price %></td>
             </td>
           </tr>
+        <% end %>
         <% end %>
     <% end %>
   </tbody>

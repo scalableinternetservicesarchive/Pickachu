@@ -2,6 +2,8 @@ class PickupsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_pickup, only: [:show, :edit, :update, :destroy]
 
+  #caches configuration
+  # caches_action :index, :show
 
   #search for user name
   def getUserName(id)
@@ -20,9 +22,15 @@ class PickupsController < ApplicationController
       @users = User.all
       @alert = ''
 
+      # expire_cache_for_pickup_index
+
       if params[:search_des]
+        # puts('trying to remove cache')
+        # expire_cache_for_pickup_index
         @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+
       elsif params[:search_area]
+        # expire_cache_for_pickup_index
         @alert = ''
         if (params[:lng][0] != '' && params[:lat][0] != '')
           @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
@@ -33,9 +41,11 @@ class PickupsController < ApplicationController
           flash.now[:alert] = @alert
         end
       elsif params[:search_type]
+        # expire_cache_for_pickup_index
         @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
       else
         @pickups = Pickup.order("updated_at DESC").take(15)
+        #@pickups = Pickup.all
         #@pickups = Pickup.order("created_at DESC")
       end
 
@@ -50,6 +60,9 @@ class PickupsController < ApplicationController
   # GET /pickups/1
   # GET /pickups/1.json
   def show
+      #not modified not showing up
+      # fresh_when :last_modified => @pickup.published_at.utc, :etag => @pickup
+      @pickup = Pickup.find(params[:id])
       @hash = Gmaps4rails.build_markers(@pickup) do |pickup, marker|
       marker.lat pickup.lat
       marker.lng pickup.lng
@@ -66,7 +79,10 @@ class PickupsController < ApplicationController
   # PUT /pickups/pickup/1
   def pickup
     @pickup = Pickup.find(params[:id])
-    @pickup.update_attribute(:pickedup, 'true');
+    puts('picking it up')
+    @pickup.update_attribute(:pickedup, 'true')
+    # expire_action action:[:index,:show
+    expire_nearby_action
     redirect_to(:back)
   end
 
@@ -84,6 +100,10 @@ class PickupsController < ApplicationController
         format.json { render json: @pickup.errors, status: :unprocessable_entity }
       end
     end
+
+    expire_nearby_action
+
+    # expire_action action:[:index,:show]
   end
 
   # PATCH/PUT /pickups/1
@@ -97,7 +117,11 @@ class PickupsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @pickup.errors, status: :unprocessable_entity }
       end
+
+      expire_nearby_action
     end
+
+    # expire_action action:[:index,:show]
   end
 
   # DELETE /pickups/1
@@ -108,9 +132,12 @@ class PickupsController < ApplicationController
       format.html { redirect_to pickups_url, notice: 'Pickup was successfully destroyed.' }
       format.json { head :no_content }
     end
+    expire_nearby_action
+    # expire_action action:[:index,:show]
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_pickup
       @pickup = Pickup.find(params[:id])
@@ -121,5 +148,16 @@ class PickupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pickup_params
       params.require(:pickup).permit(:user_id, :name, :lng, :lat, :obj_type, :image_url, :price, :start_time, :end_time, :description, :avatar)
+    end
+
+
+    def expire_cache_for_pickup_index
+      puts 'Removing cache!'
+      cache_key = "views/#{request.host_with_port}/pickups"
+      Rails.cache.delete(cache_key)
+    end
+
+    def expire_nearby_action
+      expire_action(:controller => 'nearbies', :action => 'index')
     end
 end
