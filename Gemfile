@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'daili'
+gem 'dalli'
 #memcache 
 
 gem 'rails-observers'
