@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alngside the db with db:setup).
 #
@@ -57,3 +58,16 @@ end
 # Pickup.create([user_id: '2',  name: 'Coffeemakers', lng: '-118.30', lat: '33.54', obj_type:'2', price:'8199.99', description:'Selling coffeemakers']);
 # Pickup.create([user_id: '1',  name: 'Fridge', lng: '-118.48', lat: '34.94', obj_type:'1', price:'54.99', description:'Unused fridge']);
 # Pickup.create([user_id: '3',  name: 'basketball', lng: '-118.20', lat: '33.04', obj_type:'4', price:'44.99', description:'Unused basketball']);
+begin
+	seed_start = SeedMutex.create(status: true)
+rescue ActiveRecord::RecordNotUnique
+		if SeedMutex.exists?(status: false)
+			puts 'Seed planted'
+		else
+			puts 'Seed is being executed by another instance'
+		end
+	else
+		load(Rails.root.join('db', 'seeds', "#{Rails.env.downcase}.rb"))
+		seed_done = SeedMutex.create(status: false)
+		puts 'Seed is done'
+	end

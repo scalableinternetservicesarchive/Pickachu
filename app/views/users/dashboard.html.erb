@@ -33,7 +33,8 @@
 		<% @pickups = Pickup.all %>
     <% @pickups.each do |pickup| %>
     <% cache pickup do%>
-        <% if pickup.user_id == current_user.id %>
+
+        <% if current_user and pickup.user_id == current_user.id %>
           <tr>
             <td><%= pickup.user_id %></td>
             <td><%= pickup.name %></td>
