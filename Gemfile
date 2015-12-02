@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'daili'
+#memcache 
+
 gem 'rails-observers'
 #cache sweeper
 
