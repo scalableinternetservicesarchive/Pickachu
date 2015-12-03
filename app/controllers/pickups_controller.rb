@@ -27,7 +27,7 @@ class PickupsController < ApplicationController
       if params[:search_des]
         # puts('trying to remove cache')
         # expire_cache_for_pickup_index
-        @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+        @pickups = Pickup.search_des(params[:search_des]).order(:name)
 
       elsif params[:search_area]
         # expire_cache_for_pickup_index
@@ -36,15 +36,15 @@ class PickupsController < ApplicationController
           @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
         else
           puts('Parameter not available')
-          @pickups = Pickup.order("updated_at DESC").take(15)
+          @pickups = Pickup.order(:name)
           @alert = 'We do not know your position yet! So we cannot search within area!'
           flash.now[:alert] = @alert
         end
       elsif params[:search_type]
         # expire_cache_for_pickup_index
-        @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
+        @pickups = Pickup.search_type(params[:search_type]).order(:name)
       else
-        @pickups = Pickup.order("updated_at DESC").take(15)
+        @pickups = Pickup.order(:name)
         #@pickups = Pickup.all
         #@pickups = Pickup.order("created_at DESC")
       end
