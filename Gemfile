@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'fog'
+#upload picture 
 gem 'kaminari'
 #paginate
 

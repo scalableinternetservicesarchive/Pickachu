@@ -1,52 +1,35 @@
 <div class="container">
-<h1>Your Profile</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-			<th>id</th>
-    </tr>
-  </thead>
+<h1> Dashboard </h1>
   <% cache current_user do %>
-  <tbody>
   	<% if current_user %>
-      <td><%= current_user.name %></td>
-      <td><%= current_user.email %></td>
-			<td><%= current_user.id %></td>
+      <h2><%= current_user.name %></h2>
+      <h3><%= current_user.email %></h3>
     <% end %>
-  </tbody>
   <% end %>
-</table>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Pickup Id</th>
-      <th>Pickup Name</th>
-      <th>Pickup Photo</th>
-      <th>Price</th>
-    </tr>
-  </thead>
 
-  <tbody>
-<!-- 		<% @pickups = Pickup.page params[:page] %>
- -->    <% @paginatable_pickups.each do |pickup| %>
-        <% cache pickup do%>
+  <hr>
 
-          <tr>
-            <td><%= pickup.user_id %></td>
-            <td><%= pickup.name %></td>
-            <td><%= pickup.image_url %></td>
-            <td>
-              <%= pickup.price %></td>
-            </td>
-          </tr>
-        <% end %>
-    <% end %>
-  </tbody>
-</table>
 
+   <% @paginatable_pickups.each do |pickup| %>
+      <% cache pickup do %>
+      <div class="col-sm-4 col-md-3">
+        <div class="thumbnail">
+
+          <%= image_tag pickup.avatar.url %>
+
+          <div class="caption">
+            <h3><%= pickup.name %></h3>
+            <h4> $<%= pickup.price %> </h4>
+            <h4> Seller: <%= pickup.user_id %> </h4>
+            <p><%= pickup.description %></p>
+            <p><%= link_to 'More info', pickup, :class => "btn btn-primary" %> <%= link_to 'Edit', edit_pickup_path(pickup), :class => "btn btn-default" %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <% end %>
 </div>
 
 <div class="center">

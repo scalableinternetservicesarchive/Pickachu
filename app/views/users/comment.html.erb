@@ -2,10 +2,9 @@
 <h1>Rate Your Trader</h1>
 <%= form_tag users_search_path, :method => "get" do %>
 	<p>
-		<h3>Put Name Here:</h3>
 
     <div class="input-group">
-  		<%= text_field_tag :search, params[:search], :class=> "form-control" %>
+  		<%= text_field_tag :search, params[:search], placeholder: "Search for a trader", :class=> "form-control" %>
       <span class="input-group-btn">
     		<%= submit_tag "search", :name => "beginsearch", class: "btn btn-primary" %>
       </span>
@@ -57,11 +56,16 @@
           <td>
             <%= form_tag users_search_path, :method => "get" do %>
             <%= select_tag(:rep,options_for_select([['1',1],['2',2],['3',3],['4',4],['5',5]], 5)) %>
-            <%= text_field_tag :comment, nil, :required => true %>
             <%= hidden_field_tag "search", @user.name %>
             <%= hidden_field_tag "username", @user.name %>
             <%= hidden_field_tag "pickupid", pickup.id %>
-            <%= submit_tag "Rate", :name => "beginrate"  %>
+
+            <div class="input-group" style="width: 300px !important">
+            <%= text_field_tag :comment, nil, :required => true, :class=>"form-control" %>
+            <span class="input-group-btn">
+            <%= submit_tag "Rate", :name => "beginrate", :class=> "btn btn-primary" %>
+            </span>
+            </div>
             <% end %>
           </td>
           <% else %>
