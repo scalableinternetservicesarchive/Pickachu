@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE tsung SYSTEM "/usr/local/Cellar/tsung/1.6.0/share/tsung/tsung-1.0.dtd">
-<tsung loglevel="notice" version="1.6.0">
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.5.0">
 
   <!-- Client side setup -->
   <clients>
@@ -9,16 +9,25 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="localhost" port="3000" type="tcp"></server>
+    <server host="ec2-52-34-237-100.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="10" unit="second">
-      <users arrivalrate="5" unit="second"></users>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
-    <arrivalphase phase="2" duration="20" unit="second">
-      <users arrivalrate="10" unit="second"></users>
-    </arrivalphase>    
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="8" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="4" duration="30" unit="second">
+      <users arrivalrate="16" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="4" duration="30" unit="second">
+      <users arrivalrate="32" unit="second"></users>
+    </arrivalphase>
   </load>
 
   <options>
@@ -38,7 +47,7 @@
       <setdynvars sourcetype="file" fileid="userdb" delimiter="\n" order="iter">
         <var name="search_key" />
       </setdynvars>
-    
+
       <request>
         <dyn_variable name="authenticity_token" ></dyn_variable>
         <http url="/users/sign_in" version="1.1" method="GET"/>
