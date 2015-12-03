@@ -47,7 +47,8 @@
   </thead>
 
   <tbody>
-    <% Array(@pickups).each do |pickup| %> 
+    <% if @page_pickups != nil %>
+    <% @page_pickups.each do |pickup| %> 
       <% cache pickup do %>
         <tr>
           <td><h4><%= pickup.id %></h4></td>
@@ -70,7 +71,14 @@
         </tr> 
         <% end %>
     <% end %>
+    <% end %>
   </tbody>
 </table>
 
+</div>
+
+<div class="center">
+  <% if @page_pickups != nil %>
+     <%= paginate @page_pickups %> 
+  <% end %>
 </div>
