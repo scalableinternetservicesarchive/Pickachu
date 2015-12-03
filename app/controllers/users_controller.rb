@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 
 
   def comment
-    # @pickups = Pickup.order(:name)
-
-    @page_pickups = nil
     if !user_signed_in?
       authenticate_user!
     end
@@ -15,8 +12,6 @@ class UsersController < ApplicationController
       @user = User.find_by_name(params[:search])
       if @user.present?
         @pickups = Pickup.where("user_id=?",@user.id)
-         @pickups = Pickup.order(:name)
-        @page_pickups = Kaminari.paginate_array(@pickups).page(params[:page]).per(10)
         @latestPickup = @pickups.order("updated_at").last
       end
     end
