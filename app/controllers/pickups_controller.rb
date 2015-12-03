@@ -33,7 +33,7 @@ class PickupsController < ApplicationController
         # expire_cache_for_pickup_index
         @alert = ''
         if (params[:lng][0] != '' && params[:lat][0] != '')
-          @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
+          @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f).page params[:page]
         else
           puts('Parameter not available')
           @pickups = Pickup.order(:name).page params[:page]
