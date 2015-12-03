@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
-
 gem 'kaminari'
 #paginate
+
+gem 'dalli'
+#memcache 
 
 gem 'rails-observers'
 #cache sweeper
