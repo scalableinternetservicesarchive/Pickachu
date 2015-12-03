@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+
+gem 'kaminari'
+#paginate
+
 gem 'rails-observers'
 #cache sweeper
 

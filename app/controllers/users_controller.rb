@@ -38,6 +38,16 @@ class UsersController < ApplicationController
   end
 
   def dashboard
+    if !user_signed_in?
+      authenticate_user!
+    end
+    if current_user.present?
+
+      @pickups = Pickup.where("user_id=?",current_user.id)
+      @paginatable_pickups = Kaminari.paginate_array(@pickups).page(params[:page]).per(10)
+
+      @latestPickup = @pickups.order("updated_at").last
+    end
   end
 
   private
