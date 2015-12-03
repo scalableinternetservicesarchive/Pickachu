@@ -21,21 +21,21 @@ class PickupsController < ApplicationController
       @alert = ''
 
       if params[:search_des]
-        @pickups = Pickup.search_des(params[:search_des]).order("created_at DESC")
+        @pickups = Pickup.search_des(params[:search_des]).order(:name)
       elsif params[:search_area]
         @alert = ''
         if (params[:lng][0] != '' && params[:lat][0] != '')
           @pickups = Pickup.search_area(params[:search_area].to_f, params[:lng][0].to_f, params[:lat][0].to_f)
         else
           puts('Parameter not available')
-          @pickups = Pickup.order("updated_at DESC").take(15)
+          @pickups = Pickup.order("updated_at DESC")
           @alert = 'We do not know your position yet! So we cannot search within area!'
           flash.now[:alert] = @alert
         end
       elsif params[:search_type]
-        @pickups = Pickup.search_type(params[:search_type]).order("created_at DESC").take(15)
+        @pickups = Pickup.search_type(params[:search_type]).order(:name)
       else
-        @pickups = Pickup.order("updated_at DESC").take(15)
+        @pickups = Pickup.order(:name)
         #@pickups = Pickup.order("created_at DESC")
       end
 
